@@ -1,0 +1,37 @@
+.drawerContainer {
+    width: 500px;
+    padding: 16px;
+  }
+  
+  .icon {
+    width: 24px;
+    height: 24px;
+    margin: 10px;
+  }
+  
+  .icon-invert {
+    width: 32px;
+    height: 32px;
+    margin: 10px;
+    filter: brightness(0) invert(1); 
+  }
+  .icon-close{
+    width: 32px;
+    height: 32px;
+    margin: 10px;
+  }
+  .filterSection {
+    margin-bottom: 16px;
+  }
+  
+  .filterActions {
+    display: flex;
+    justify-content: flex-start;
+    margin-top: 16px;
+  }
+  
+  .verticalCheckboxes {
+    display: flex;
+    flex-direction: column;
+  }
+  

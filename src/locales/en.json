@@ -1,0 +1,77 @@
+{
+  "home": "Home",
+  "property": "Property",
+  "sale": "Sale",
+  "rent": "Rent",
+  "car": "Car",
+  "contact": "Contact",
+  "login": "Login",
+  "register": "Register",
+  "ads": "Post An Ads",
+  "news": "News",
+  "map": "Map",
+  "search" :"Search",
+  "codeNo" :" Code No",
+  "region" :"Region",
+  "township" : "Township",
+    "signup":"Signup",
+    "toyota" : "Toyota",
+    "honda" : "Honda",
+    "suzuki" : "Suzuki",
+    "nissan" : "Nissan",
+    "hyundai" : "Hyundai",
+    "mercedes": "Mercedes",
+    "bmw": "BMW",
+    "ford": "Ford",
+    "mitsubishi": "Mitsubishi",
+    "lexus": "Lexus",
+    "goDaung" : "Go Daung",
+        "minicondo": "Mini Condo",
+    
+      "wholeHouse": "Whole House",
+      "apartment": "Apartment",
+      "condo": "Condo",
+      "office": "Office",
+      "shop": "Shop",
+      "land": "Land",
+      "hotel": "Hotel",
+      "naypyitaw": "Naypyitaw",
+    "yangon": "Yangon",
+    "ayay": "Ayeyawaddy",
+    "mandalay": "Mandalay",
+    "paekuu": "Paekuu",
+    
+    
+   
+  "minimumPrice":  "Minimum Price",
+  "maximumPrice": "Maximum Price",
+  "propertyType": "Type of Property",
+  "forSaleOrRent" : "For Sale / For Rent",
+  "saleProptertyevent": "Property Sales Events",
+  "allProptertyevent": "See All Property Events",
+  "propertySaleYgn": "Property sale listings in Yangon Region",
+  "property_types" :"Types of Property",
+  "property_by_region": "Property by State/Region",
+  "featured_property_rentals": "Featured Property Rentals",
+  "most_viewed_property_sales":   "Most Viewed Property Sale Listings",
+  "most_viewed_property_rentals":  "Most Viewed Property Rental Listings",
+  "vehicle_types":  "Types of Vehicles",
+  "most_viewed_vehicle_sales":  "Most Viewed Car Sale Listings",
+    "property_and_vehicle_news": "News",
+    "sharmal_car" : "Sharmal Car",
+  "sharmal_market": "Sharmal Market ",
+  
+    "download" : "Get the Sharmal app right now.",
+ "seeAllSalePropertyAds": " See All Property Sale Ads",
+  "seeAllRentalPropertyAds": "See All Property Rental Ads",
+  "seeAllCarSaleAds": "See All Car Sale Ads",
+  "seeMore": "See More",
+  "viewDetails": "View Details",
+   "text" :"Myanmar Online Home & Property - Easily and quickly find the home, property, and cars of your dreams."
+ 
+  
+  
+  
+    
+  
+}

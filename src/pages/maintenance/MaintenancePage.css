@@ -1,0 +1,23 @@
+/* App.css */
+
+html, body, #root, .App {
+    height: 100%;
+    margin: 0;
+    background-color: #fafafa;
+  }
+  
+  .App-header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    margin-top: 7%;
+  }
+  
+  .App-header img {
+    max-width: 100%;
+    max-height: 100%;
+    width: auto;
+    height: auto;
+  }
+  
