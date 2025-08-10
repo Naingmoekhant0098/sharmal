@@ -49,7 +49,7 @@ marginBottom : "20px",
           justifyContent="center"
           alignItems="flex-start"
         >
-          {blogs.map((blog) => (
+          {blogs.slice(0,6).map((blog) => (
             <Grid item xs={12} sm={6} md={4} key={blog.id} display="flex">
               <Box
                 sx={{

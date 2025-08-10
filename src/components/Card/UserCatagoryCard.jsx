@@ -232,8 +232,9 @@ const UserCategoryCard = ({ Title, PropertyCatagoryData, Type, history }) => {
                   padding: { xs: 0.5, sm: 0.6, md: 0.6, lg: 0.6 },
                   borderRadius: 100,
                   border : "1px solid white",
-                  transition : "all .3s ease",
+                  transition : "all .5s ease",
                   "&:hover" : {
+                    transform : "rotate(360deg)",
                   border : "1px solid #6F1D8E",
                   bgcolor : "rgba(112, 29, 142, 0.74)!important"
                   }

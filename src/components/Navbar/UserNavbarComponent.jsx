@@ -333,7 +333,7 @@ function UserNavbarComponent({ history, showMenus }) {
                   <Box   onClick={() => history.push("/member/manage")} sx={{background : "#6F1D8E",cursor :'pointer' , "&:hover" : {
                     background : "rgb(162, 36, 208)"
                   } , padding : "10px 60px" , borderTopLeftRadius : 30}}>
-                  ကြော်ညာတင်ရန်
+                  ကြော်ာ်ငြာတင်ရန်
                   </Box>
                   // <Box
                   //   component="img"

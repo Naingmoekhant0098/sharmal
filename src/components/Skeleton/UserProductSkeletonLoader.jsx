@@ -5,9 +5,10 @@ const UserProductSkeletonLoader = () => {
   return (
     <Grid container
     columnSpacing={3}
-    rowSpacing={5}  // ✅ This gives more space vertically between rows
-    sx={{ mt: 2 }}>
-      {[...Array(6)].map((_, index) => (
+    rowSpacing={5} 
+    marginTop={{sm : -20 , md : -70 , lg : -70 , xl : -70}} 
+    >
+      {[...Array(3)].map((_, index) => (
         <Grid item xs={12} sm={6} md={4} key={index}>
           <Box
             sx={{
@@ -19,10 +20,10 @@ const UserProductSkeletonLoader = () => {
               height: '100%',
             }}
           >
-            {/* Image */}
+           
             <Skeleton variant="rectangular" width="100%" height={150} />
 
-            {/* Price + Features */}
+          
             <Box sx={{ mt: 2 }}>
               <Skeleton variant="text" width="40%" height={30} />
               <Box sx={{ display: 'flex', gap: 2, mt: 1 }}>

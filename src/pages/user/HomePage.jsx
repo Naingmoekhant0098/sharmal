@@ -308,10 +308,7 @@ function HomePage({ history }) {
           },
         }}
       >
-        
           <AdsShowcaseComponent />
-        
-      
           <CardLists PropertyCatagoryData={PropertyCatagory}  Type="home_ads"  history={history}   Title={ t('saleProptertyevent')}/>
         <Box sx={{ my: { xs: 2.5, lg: 6 } }} id="map">
            <Typography

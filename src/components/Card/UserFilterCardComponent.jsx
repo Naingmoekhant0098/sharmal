@@ -621,6 +621,8 @@ const UserFilterCardComponent = ({
               sx={{
                 display: "flex",
                 justifyContent : "space-between",
+                alignItems :'center',
+
                 flexDirection: "row",
                 padding: isMobile ? "20px 3px 20px 0" : "20px",
               }}
@@ -683,7 +685,8 @@ const UserFilterCardComponent = ({
                 variant="contained"
                 sx={{
                   width: isMobile ? "90px" : "250px",
-                  height: "60px",
+                  height: "50px",
+                  borderRadius : 100,
                   backgroundColor: "#6F1D8E",
                   fontSize: isMobile ? "10px" : "auto",
                   "&:hover": {
@@ -852,6 +855,7 @@ const UserFilterCardComponent = ({
                 sx={{
                   width: isMobile ? "90px" : "250px",
                   height: "60px",
+                
                   backgroundColor: theme.palette.primary.main,
                   fontSize: isMobile ? "10px" : "auto",
                   

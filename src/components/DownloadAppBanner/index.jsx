@@ -69,17 +69,23 @@ export default function AdsShowcaseComponent() {
         justifyContent: { xs: "center", md: "flex-start" },
       }}
     >
-      <StyledButton component="a"  target="_blank" rel="noopener noreferrer" sx={{border : "1px solid #6F1D8E" ,"&:hover":{background :'#E9E3DF'  , color :'#6F1D8E'}}}>
+        <a  style={{textDecoration : "none"}} href="https://play.google.com/store/apps/details?id=com.sharmal.android" >
+      <StyledButton component="a"  target="_blank" rel="noopener noreferrer" sx={{border : "1px solid #6F1D8E" , color : 'white',"&:hover":{background :'#E9E3DF'  , color :'#6F1D8E'}}}>
         {/* {  <IconWrapper src={playStore} alt="Google Play" />} */}
         <Box component="img" src={playstore} sx={{ width : 40 , height : 40}}  />
         <Box sx={{ textAlign: "left" }}>
-          <Typography
+       
+       
+         <Typography
             variant="caption"
             sx={{
               display: "block",
               opacity: 0.9,
               fontSize: "0.75rem",
               lineHeight: 1,
+             
+             
+              textDecoration : "none"
             }}
           >
             Get it on
@@ -88,15 +94,20 @@ export default function AdsShowcaseComponent() {
             variant="body2"
             sx={{
               fontWeight: 600,
+           
               fontSize: { xs: "0.875rem", md: "1rem" },
               lineHeight: 1.2,
-              mt:0.5
+              
+              mt:0.5,
+                 textDecoration : "none"
             }}
           >
             Google Play
           </Typography>
+       
         </Box>
       </StyledButton>
+      </a>
 
       <StyledButton component="a"  target="_blank" rel="noopener noreferrer" sx={{border : "1px solid #6F1D8E" ,"&:hover":{background :'#E9E3DF'  , color :'#6F1D8E'}}}>
         {/* <StyledDownloadIcon /> */}

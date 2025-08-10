@@ -131,7 +131,7 @@ export default function EainCard({data,isPopular,Type , history}) {
       </Box>
       <CardContent sx={{ padding: 2, paddingTop: 1 }}>
         <Typography sx={{ fontWeight: "600" }} >
-        {content.Title || "Property Title"}
+        {content.Title?.length > 60  ? content.Title?.slice(0,65)+"...." : content?.Title || "Property Title"}
         </Typography>
         <hr
                     style={{

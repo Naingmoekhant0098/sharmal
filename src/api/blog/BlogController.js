@@ -6,7 +6,7 @@ const COMMON_API_BASE_URL = process.env.REACT_APP_COMMON_SERVICE;
 
 export const GetBlogAPI = async (toast) => {
   try {
-    const endpoint = `${COMMON_API_BASE_URL}get-datalist`;
+    const endpoint = `${COMMON_API_BASE_URL}get-datalist?limit=6`;
 
     const headers = {
       // "Authorization": "Bearer " + _DecryptService(sessionStorage.getItem("token")),

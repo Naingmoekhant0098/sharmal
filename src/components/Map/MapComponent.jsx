@@ -1,5 +1,5 @@
 import React from "react";
-import { MapContainer, TileLayer } from "react-leaflet";
+import { MapContainer, TileLayer,ZoomControl } from "react-leaflet";
 import HoverableMarkerComponent from "./HoverableMarkerComponent";
 import { cityCoordinates } from "../../data/cityCoordinates";
 import L from "leaflet";
@@ -9,7 +9,7 @@ import { StyledTitle } from "../Card/UserCatagoryCard";
 import theme from "../../theme";
 import { useTranslation } from "react-i18next";
 
-// Fix for missing default icon
+
 delete L.Icon.Default.prototype._getIconUrl;
 L.Icon.Default.mergeOptions({
   iconRetinaUrl: require("leaflet/dist/images/marker-icon-2x.png"),
@@ -48,14 +48,16 @@ const MapComponent = ({ properties }) => {
         <MapContainer
           center={[16.8, 96.15]}
           zoom={11}
-          scrollWheelZoom={true}
+          scrollWheelZoom={false} 
+           zoomControl={true}
           style={{ height: "70vh", width: "100vw" }}
         >
+        
           <TileLayer
             attribution='&copy; <a href="https://osm.org/">OpenStreetMap</a> contributors'
             url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
           />
-
+             <ZoomControl position="topright" />
           {properties?.map((item) => {
             const property = item?.Property;
             const images = item?.Images;

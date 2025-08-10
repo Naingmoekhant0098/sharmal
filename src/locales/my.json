@@ -43,11 +43,7 @@
   "mitsubishi": "မစ်စုဘီရှီ",
   "lexus": "လက်ဆက်စ်",
   "toyota": "တိုယိုတာ",
-
-
-  
-
-  "saleProptertyevent": "အရောင်းအိမ်ခြံမြေကြော်ငြာများ",
+  "saleProptertyevent": "အိမ်ခြံမြေအထူးကြော်ငြာများ",
   "allProptertyevent": "အိမ်ခြံမြေကြော်ငြာများအားလုံးကို ကြည့်မည်",
   "seeAllsaleProptertyAds": "အရောင်းအိမ်ခြံမြေကြော်ငြာများအားလုံးကို ကြည့်မည်",
   "propertySaleYgn": "ရန်ကုန်တိုင်းဒေသကြီးရှိ အိမ်ခြံမြေ အရောင်းကြော်ငြာများ",
@@ -64,17 +60,10 @@
   "seeAllCarSaleAds": "ကားအရောင်းကြော်ငြာများအားလုံးကို ကြည့်မည်",
   "seeMore": "နောက်ထပ်ကြည့်မည်",
   "viewDetails": "အသေးစိတ်ကြည့်မည်",
-  "download" : "Shamal Application ကို အခုပဲ download လုပ်ယူပါ",
+  "download" : "Sharmal Application ကို အခုပဲ download လုပ်ယူပါ",
   "sharmal_car" : "Sharmal ကား",
   "sharmal_market": "Sharmal စျေးကွက်",
   "text" : "မြန်မာ့အွန်လိုင်းအိမ်ခြံမြေ - သင့်ရဲ့စိတ်ကူးထဲကအိမ်ခြံမြေနဲ့ကားများကို လွယ်ကူလျင်မြန်စွာရှာဖွေလိုက်ပါ။",
- 
-  
- 
-  
-
-
-
   "rentProptertyAds": "အငှားအိမ်ခြံမြေကြော်ငြာများ",
   "carAds": "ကားကြော်ငြာများ",
   "contactUs": "ဆက်သွယ်ရန်",
