@@ -141,7 +141,6 @@ export default function EainCard({data,isPopular,Type , history}) {
                       border: "0.5px solid #E9E3DF",
                     }}
                   />
-        
         <Typography variant="body2" sx={{ color: "#3E0F56", marginTop : 1.5 , fontWeight : '600', fontSize:"16px" }}>
         {content.Price || "N/A"} <Typography variant="p">သိန်း</Typography>
                         <Typography
