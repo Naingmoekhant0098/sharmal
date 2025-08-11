@@ -309,7 +309,25 @@ function HomePage({ history }) {
         }}
       >
           <AdsShowcaseComponent />
-          <CardLists PropertyCatagoryData={PropertyCatagory}  Type="home_ads"  history={history}   Title={ t('saleProptertyevent')}/>
+          {IsLoading ? (
+          <UserHomeProductSkeleton />
+        ) : (
+          <>
+            <ThemeProvider theme={theme}>
+             
+              <CardSlider
+                Title={t('featured_property_rentals')}
+                data={PropertyHotDealforRentData}
+                Type={"Property"}
+                history={history}
+                isPopular={false}
+                link={'ငှားရန်'}
+                buttonText={t('seeAllRentalPropertyAds')}
+              />
+            </ThemeProvider>
+          </>
+        )}
+          {/* <CardLists PropertyCatagoryData={PropertyCatagory}  Type="home_ads"  history={history}   Title={ t('saleProptertyevent')}/> */}
         <Box sx={{ my: { xs: 2.5, lg: 6 } }} id="map">
            <Typography
                   sx={{
@@ -349,24 +367,7 @@ function HomePage({ history }) {
           history={history}
           Title={t('property_by_region')}
         /> */}
-        {IsLoading ? (
-          <UserHomeProductSkeleton />
-        ) : (
-          <>
-            <ThemeProvider theme={theme}>
-             
-              <CardSlider
-                Title={t('featured_property_rentals')}
-                data={PropertyHotDealforRentData}
-                Type={"Property"}
-                history={history}
-                isPopular={false}
-                link={'ငှားရန်'}
-                buttonText={t('seeAllRentalPropertyAds')}
-              />
-            </ThemeProvider>
-          </>
-        )}
+       
 
         {/* {IsLoading ? (
           <UserHomeProductSkeleton />
