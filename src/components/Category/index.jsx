@@ -7,7 +7,7 @@ import { useTranslation } from "react-i18next";
 // Replace with dynamic props if needed
 // const adImages = [ads1Image, ads2Image];
 
-export default function AdsShowcaseComponent() {
+export default function AdsShowcaseComponent({history}) {
   const { t } = useTranslation();
   return (
     <Box
@@ -61,6 +61,7 @@ export default function AdsShowcaseComponent() {
             </Typography>
             </Box> */}
         <Box
+      onClick={() => history.push("/car")}
           sx={{
             cursor: "pointer",
             display: "flex",
@@ -130,6 +131,10 @@ export default function AdsShowcaseComponent() {
           </Typography>
         </Box>
         <Box
+           onClick={() => {
+            history.push("/notfount", { type: "comingSoon" });
+            window.scrollTo(0, 0);
+          }}
           sx={{
             cursor: "pointer",
             display: "flex",

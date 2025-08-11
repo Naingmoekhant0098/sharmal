@@ -55,9 +55,12 @@ const PropertyPage = ({ history }) => {
   const paramLocation = useLocation(); // Use useLocation hook
   const isSmallScreen = useMediaQuery(theme.breakpoints.down("sm"));
   const [propertyId, setpropertyId] = useState();
+  const queryParams = new URLSearchParams(paramLocation.search);
   useEffect(() => {
-    const queryParams = new URLSearchParams(paramLocation.search);
+   
     const Code = queryParams.get("Code") || "";
+
+    console.log(Code);
     const State = queryParams.get("State") || "All";
     const propertyIdParam = queryParams.get("PropertyId") || ""; // Get the Property query parameter
     const propertyType = queryParams.get("PropertyType") || "";
@@ -314,7 +317,7 @@ console.log(data);
               }}
             >
               {IsLoading ? (
-                <UserProductSkeletonLoader />
+                <UserProductSkeletonLoader count={queryParams.get("Code") ? 1 : 3}/>
               ) : (
 
                 <UserProductDisplayCard

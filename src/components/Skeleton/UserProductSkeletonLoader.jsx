@@ -1,14 +1,15 @@
 import React from 'react';
 import { Box, Skeleton, Grid } from '@mui/material';
 
-const UserProductSkeletonLoader = () => {
+const UserProductSkeletonLoader = ({count}) => {
+   
   return (
     <Grid container
-    columnSpacing={3}
+    columnSpacing={1}
     rowSpacing={5} 
     marginTop={{sm : -20 , md : -70 , lg : -70 , xl : -70}} 
     >
-      {[...Array(3)].map((_, index) => (
+      {[...Array(count)].map((_, index) => (
         <Grid item xs={12} sm={6} md={4} key={index}>
           <Box
             sx={{

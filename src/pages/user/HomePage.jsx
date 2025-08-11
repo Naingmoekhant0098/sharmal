@@ -140,7 +140,7 @@ function HomePage({ history }) {
       try {
         const payload = {
           PageNo: 1,
-          PageSize: 4,
+          PageSize: 25,
           IsHotDeal: "true",
           Status: "ရောင်းရန်",
         };
@@ -155,7 +155,7 @@ function HomePage({ history }) {
       try {
         const payload = {
           PageNo: 1,
-          PageSize: 4,
+          PageSize: 25,
           IsPopular: "true",
           Status: "ရောင်းရန်",
         };
@@ -174,7 +174,7 @@ function HomePage({ history }) {
       try {
         const payload = {
           PageNo: 1,
-          PageSize: 4,
+          PageSize: 25,
           IsHotDeal: "true",
           Status: "ငှားရန်",
         };
@@ -193,7 +193,7 @@ function HomePage({ history }) {
       try {
         const payload = {
           PageNo: 1,
-          PageSize: 4,
+          PageSize: 25,
           IsPopular: "true",
           Status: "ငှားရန်",
         };
@@ -212,7 +212,7 @@ function HomePage({ history }) {
       try {
         const payload = {
           PageNo: 1,
-          PageSize: 4,
+          PageSize: 25,
           IsHotDeal: "true",
           Status: "ရောင်းရန်",
         };
@@ -227,7 +227,7 @@ function HomePage({ history }) {
       try {
         const payload = {
           PageNo: 1,
-          PageSize: 4,
+          PageSize: 25,
           IsPopular: "true",
           Status: "ရောင်းရန်",
         };
@@ -405,7 +405,7 @@ function HomePage({ history }) {
         )}
 
         
-          <CategoryBanner />
+          <CategoryBanner history={history} />
      
 
         {/* {IsLoading ? (

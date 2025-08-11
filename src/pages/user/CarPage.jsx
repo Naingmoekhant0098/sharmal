@@ -40,9 +40,9 @@ const CarPage = ({ history }) => {
   const paramLocation = useLocation(); // Use useLocation hook
   const isSmallScreen = useMediaQuery(theme.breakpoints.down("md"));
   const [carId, setcarId] = useState();
-
+  const queryParams = new URLSearchParams(paramLocation.search);
   useEffect(() => {
-    const queryParams = new URLSearchParams(paramLocation.search);
+    
     const carIdParam = queryParams.get("CarId");
 
     // Extract query parameters with defaults
@@ -167,7 +167,7 @@ const CarPage = ({ history }) => {
             }}
           >
             {IsLoading ? (
-              <UserProductSkeletonLoader />
+              <UserProductSkeletonLoader  count={queryParams.get("CarId")?  1 : 3}/>
             ) : data && data.length > 0 ? (
               <>
               <UserProductDisplayCard
