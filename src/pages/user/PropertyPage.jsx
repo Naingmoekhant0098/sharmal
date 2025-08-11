@@ -342,11 +342,11 @@ console.log(data);
               />
             </Box>
 
-            {/* Filter Panel (always visible on larger screens, toggle on small screens) */}
+            
             {!isSmallScreen && (
               <Box
                 sx={{
-                  flex: 3, // 30% width
+                  flex: 3, 
                   display: "flex",
                   alignItems: "flex-start",
                   justifyContent: "center",

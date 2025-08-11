@@ -233,7 +233,7 @@ const UserFilterCardComponent = ({
       
       }}
     >
-       <Box  sx={{fontSize : {sm : 16 , md : 16 , lg:25 , xl:28} ,position :'absolute' , top :{xs:"-120px" ,sm:"-150px" , md :"-130px" , lg : "-130px" , xl : "-120px"} ,textAlign :'center', textWrap :'wrap',fontWeight : 500  , color :'white' , mb:2 ,  width: {xs : "90%" , sm :"90%" , md : "60%" , lg:"86%" , xl : "80%"},}} >
+       <Box  sx={{fontSize : {sm : 16 , md : 16 , lg:25 , xl:28} ,position :'absolute' , top :{xs:"-120px" ,sm:"-150px" , md :"-130px" , lg : "-130px" , xl : "-120px"} ,textAlign :'center', textWrap :'wrap',fontWeight : 500  , color :'white' , mb:2 ,  width: {xs : "90%" , sm :"90%" , md : "60%" , lg:"100%" , xl : "100%"},}} >
       {t('text')}
     </Box> 
       {/* <Box

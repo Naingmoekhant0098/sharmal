@@ -23,11 +23,36 @@ import MemberLoginPage from "./pages/user/MemberLoginPage";
 import MemberRegisterPage from "./pages/user/MemberRegisterPage";
 import MemberForgetPasswordPage from "./pages/user/MemberForgetPasswordPage.jsx";
 import MemberDrawerComponent from "./components/Drawer/MemberDrawerComponent.jsx";
+import { Box } from "@mui/material";
+import { Fab, Zoom } from "@mui/material";
+import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
+import { useState ,useEffect } from "react";
+import theme from "./theme.js";
 
 export default function App() {
+  const [showFab, setShowFab] = useState(false);
+
+  
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 300) {
+        setShowFab(true);
+      } else {
+        setShowFab(false);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
   return (
-    <>
-      <TableHeadersProvider>
+    <Box sx={{
+      position : 'relative'
+    }}>
+      <TableHeadersProvider >
         <Router>
           <Switch>
             <Route exact path='/' component={HomePage} />
@@ -50,7 +75,28 @@ export default function App() {
           </Switch>
         </Router>
       </TableHeadersProvider>
+      <Zoom in={showFab}>
+        <Fab
+          color="red"
+          onClick={scrollToTop}
+          sx={{
+            position: "fixed",
+            bottom: 16,
+            right: 40,
+            boxShadow: 3,
+            backgroundColor: "#3E0F56",  
+            color: "#fff",              
+            "&:hover": {
+              border: "1px solid #3E0F56",
+              color :"#3E0F56",
+              backgroundColor: "#fff",  
+            },
+          }}
+        >
+          <KeyboardArrowUpIcon />
+        </Fab>
+      </Zoom>
       <ToastContainer />
-    </>
+    </Box>
   );
 }
