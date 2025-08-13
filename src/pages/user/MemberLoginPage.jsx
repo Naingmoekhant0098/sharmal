@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 import {
   Box,
   TextField,
@@ -6,160 +6,242 @@ import {
   Link,
   Paper,
   ThemeProvider,
-  IconButton,
-  InputAdornment
-} from '@mui/material';
-import { Visibility, VisibilityOff } from '@mui/icons-material';
-import { toast, ToastContainer } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
-import SharmalLoginImage from '../../assets/images/Logo.png';
-import theme from '../../theme';
-import { MemberLoginAPI } from '../../api/auth/AuthController';
-import { _EncryptService } from '../../service/EncryptDecryptService';
-import { LoadingButton } from '@mui/lab';
+  InputAdornment,
+  RadioGroup,
+  FormControlLabel,
+  Radio,
+  FormLabel,
+   
+} from "@mui/material";
+ 
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import SharmalLoginImage from "../../assets/images/Sulay.png";
+import theme from "../../theme";
+import { LoadingButton } from "@mui/lab";
+import PersonIcon from "@mui/icons-material/Person";
+import MailIcon from "@mui/icons-material/Mail";
+import ApartmentIcon from "@mui/icons-material/Apartment";
+import PhoneIcon from "@mui/icons-material/Phone";
+import KeyIcon from "@mui/icons-material/Key";
+ 
+import Checkbox from '@mui/material/Checkbox';
 
-function MemberLoginPage({ history }) {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [showPassword, setShowPassword] = useState(false);
+function MemberRegisterPage({ history }) {
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
   const [loading, setLoading] = useState(false);
+  const [step, setStep] = useState(1);
+  const [otp, setOtp] = useState("");
 
-  const handleLogin = async () => {
-    if (!email || !password) {
-      toast.error('Please fill in both fields');
-      return;
-    }
 
-    const encryptedPassword = _EncryptService(password);
+ const [data , setData] = useState({});
 
-    const payload = {
-      Email: email,
-      Password: encryptedPassword
-    };
+  // multiple role user
+  
+  
+  const handleNext = async () => {
 
-    setLoading(true);
-    await MemberLoginAPI(payload, toast, history);
-    setLoading(false);
+    console.log(data);
+    // if (!name || !email || !password || !confirmPassword) {
+    //   toast.error("All fields are required");
+    //   return;
+    // }
+
+    // if (password !== confirmPassword) {
+    //   toast.error("Passwords do not match");
+    //   return;
+    // }
+
+    // setLoading(true);
+    // setTimeout(() => {
+    //   setLoading(false);
+    //   setStep(2);
+    //   toast.success("OTP has been sent to your email");
+    // }, 1000);
   };
 
+  const handleOtpConfirm = () => {
+    if (!otp || otp.length !== 6) {
+      toast.error("Please enter a valid 6-digit OTP");
+      return;
+    }
+    toast.success("OTP Verified Successfully");
+    // You can now call the actual registration API
+  };
+  const [activeIndex, setActiveIndex] = useState(0);
   return (
     <ThemeProvider theme={theme}>
       <ToastContainer />
       <Box
         sx={{
-          minHeight: '100vh',
-          background: `linear-gradient(135deg, ${theme.palette.primary.main} 0%, ${theme.palette.secondary.main} 100%)`,
-          display: 'flex',
-          justifyContent: 'center',
-          alignItems: 'center',
-          padding: 2
+          maxWidth: "1600px",
+          minHeight: "100vh",
+          margin: "0 auto",
+          backgroundColor: "white",
+          background: "white",
+          // background: `linear-gradient(135deg, ${theme.palette.primary.main} 0%, ${theme.palette.secondary.main} 100%)`,
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
         }}
       >
-        <Paper
+        <Box
           elevation={4}
           sx={{
-            width: { xs: '100%', sm: '90%', md: '800px' },
-            display: 'flex',
-            flexDirection: { xs: 'column', md: 'row' },
-            borderRadius: 3,
-            overflow: 'hidden',
+            width: "100%",
+            height: "100vh",
+            display: "flex",
+            flexDirection: { xs: "column", md: "row" },
+            overflow: "hidden",
           }}
         >
-          {/* Left: Illustration */}
           <Box
             sx={{
-              width: { xs: '100%', md: '50%' },
-              backgroundColor: '#fafafa',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              p: 2
+              width: { xs: "100%", md: "50%" },
+              // backgroundColor: "#fafafa",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
             }}
           >
             <img
               src={SharmalLoginImage}
-              alt="Login Illustration"
-              style={{ width: '100%', maxWidth: '300px', height: 'auto' }}
+              alt="Register Illustration"
+              style={{ width: "100%", height: "auto" }}
             />
           </Box>
 
-          {/* Right: Login Form */}
           <Box
             sx={{
-              width: { xs: '100%', md: '50%' },
+              width: { xs: "100%", md: "50%" },
               py: 4,
               px: { xs: 2, sm: 4 },
-              display: 'flex',
-              flexDirection: 'column',
-              justifyContent: 'center',
-              alignItems: 'center',
+              display: "flex",
+              flexDirection: "column",
+              justifyContent: "center",
+              // alignItems: 'center',
             }}
           >
-            <Typography variant="h6" fontWeight="bold" textAlign="center" mb={3}>
-              Login to Sharmal
-            </Typography>
+            <Box sx={{ width: "100%", maxWidth: 530, margin: "0 auto" }}>
+            
+                <Box sx={{ mt: 2 }}>
+                  <Typography
+                    sx={{
+                      fontSize: "30px",
+                      fontWeight : "800"
+                    }}
+                    fontWeight="bold"
+                    mb={1}
+                  >
+                   Hello ,<br/>
+                   Welcome Back !
+                  </Typography>
+                  <Typography
+                    variant="p"
+                    sx={{
+                      fontSize: 16,
+                      opacity: 0.6,
+                    }}
+                    mb={6}
+                  >
+                   Log in to your account to continue managing your posts and access your dashboard.
+                  </Typography>
 
-            <Box sx={{ width: '100%', maxWidth: 330 }}>
-              <TextField
-                fullWidth
-                label="Email"
-                margin="normal"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-              />
-
-              <TextField
-                fullWidth
-                label="Password"
-                margin="normal"
-                type={showPassword ? 'text' : 'password'}
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                InputProps={{
-                  endAdornment: (
-                    <InputAdornment position="end">
-                      <IconButton
-                        onClick={() => setShowPassword(!showPassword)}
-                        edge="end"
-                      >
-                        {showPassword ? <VisibilityOff /> : <Visibility />}
-                      </IconButton>
-                    </InputAdornment>
-                  )
-                }}
-              />
-
-              <LoadingButton
-                fullWidth
-                loading={loading}
-                variant="contained"
-                color="primary"
-                onClick={handleLogin}
-                sx={{
-                  mt: 2,
-                  borderRadius: '30px',
-                  fontWeight: 600,
-                  height: '45px',
-                  textTransform: 'uppercase'
-                }}
-              >
-                Login
-              </LoadingButton>
-
-              <Box sx={{ display: 'flex', justifyContent: 'space-between', mt: 2 }}>
-                <Link onClick={() => history.push('/member/forget-password')} underline="hover" sx={{ cursor: 'pointer' }}>
-                  Forgot Password?
+                  <Box sx={{ marginTop: 1 }}>
+                    
+                    <TextField
+                      fullWidth
+                      // label="Email"
+                      margin="normal"
+                      value={data?.email}
+                      placeholder="Enter Email Address !"
+                      onChange={(e) => setData({...data , email : e.target.value})}
+                      InputProps={{
+                        startAdornment: (
+                          <InputAdornment position="start">
+                            <MailIcon
+                              sx={{
+                                 fontSize: {sm : 20 , md:30},
+                              }}
+                            />
+                          </InputAdornment>
+                        ),
+                      }}
+                      sx={{
+                        fontSize : 10,
+                        mt :2,
+                        "& .MuiOutlinedInput-root": {
+                          borderRadius: "10px", // reduced radius
+                        },
+                      }}
+                    />
+                    
+                      
+                    <TextField
+                      fullWidth
+                      // label="Password"
+                      type="password"
+                      placeholder="Enter Password "
+                      margin="normal"
+                      value={data?.password}
+                      onChange={(e) => setData({...data , password : e.target.value})}
+                      InputProps={{
+                        startAdornment: (
+                          <InputAdornment position="start">
+                            <KeyIcon
+                              sx={{
+                                fontSize: {sm : 20 , md:30},
+                              }}
+                            />
+                          </InputAdornment>
+                        ),
+                      }}
+                      sx={{
+                        fontSize : 15,
+                        mt :2,
+                        "& .MuiOutlinedInput-root": {
+                          borderRadius: "10px", // reduced radius
+                        },
+                      }}
+                    />  
+                    <LoadingButton
+                      fullWidth
+                      loading={loading}
+                      onClick={handleNext}
+                      variant="contained"
+                      color="primary"
+                      sx={{
+                        mt: 2,
+                        borderRadius: "10px",
+                        fontWeight: 600,
+                        height: "45px",
+                        textTransform: "uppercase",
+                      }}
+                    >
+                     Sign In
+                    </LoadingButton>
+                  </Box>
+                </Box>
+            
+              <Typography textAlign="center" mt={2}>
+                Already have an account?{" "}
+                <Link
+                  onClick={() => history.push("/member/register")}
+                  underline="hover"
+                  sx={{ cursor: "pointer" }}
+                >
+                  Create Account
                 </Link>
-                <Link onClick={() => history.push('/member/register')} underline="hover" sx={{ cursor: 'pointer' }}>
-                  Register
-                </Link>
-              </Box>
+              </Typography>
             </Box>
           </Box>
-        </Paper>
+        </Box>
       </Box>
     </ThemeProvider>
   );
 }
 
-export default MemberLoginPage;
+export default MemberRegisterPage;

@@ -53,6 +53,17 @@ box-shadow: 38px 34px 62px -33px rgba(0,0,0,0.58);
 
 }
 
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}
+
 .UserPageTitleStyle {
   font-family: 'Myanmar Sagar', 'Heading', sans-serif;
   font-size: 20px;

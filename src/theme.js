@@ -2,10 +2,12 @@ import { createTheme } from "@mui/material";
 const theme = createTheme({
   palette: {
     primary: {
-      main: "#3E0F56", // deep purple from text
+      main: "#6F1D8E", // deep purple from text
       contrastText: "#ffffff",
-      dark: "#280837", // darker shade for hover states
+      dark: "#280837",  
+    
     },
+     
     secondary: {
       main: "#A033A6", // purple-magenta from car gradient
     },

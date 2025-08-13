@@ -1,0 +1,40 @@
+[
+    {
+        "name" : "Profile",
+        "href" : "/member/profile",
+        "icon" :"PersonOutlineIcon"
+    },
+    {
+        "name" : "Create Post",
+        "href" : "/member/create-post",
+        "icon" :"PersonOutlineIcon"
+    },
+    {
+        "name" : "Edit Profile",
+        "href" : "/member/edit-profile",
+        "icon" :"PersonOutlineIcon"
+    },
+    {
+        "name" : "Password",
+        "href" : "/member/change-password",
+        "icon" :"PersonOutlineIcon"
+    },
+    {
+        "name" : "Password",
+        "href" : "/member/change-password",
+        "icon" :"PersonOutlineIcon"
+    },
+    {
+        "name" : "Delete Account",
+        "href" : "/member/delete-account",
+        "icon" :"PersonOutlineIcon"
+    },
+    {
+        "name" : "Logout",
+        "href" : "/member/logout",
+        "icon" :"PersonOutlineIcon"
+    }
+    
+    
+    
+]
