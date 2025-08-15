@@ -229,7 +229,7 @@ function MemberRegisterPage({ history }) {
               <Typography textAlign="center" mt={2}>
                 Already have an account?{" "}
                 <Link
-                  onClick={() => history.push("/member/register")}
+                  onClick={() => history.push("/register")}
                   underline="hover"
                   sx={{ cursor: "pointer" }}
                 >

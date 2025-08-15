@@ -1049,7 +1049,7 @@ function MemberLoginPage({ history }) {
               <Typography textAlign="center" mt={5}>
                 Already have an account?{" "}
                 <Link
-                  onClick={() => history.push("/member/login")}
+                  onClick={() => history.push("/login")}
                   underline="hover"
                   sx={{ cursor: "pointer" }}
                 >
