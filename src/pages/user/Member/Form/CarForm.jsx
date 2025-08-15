@@ -613,7 +613,7 @@ export default function CarForm() {
                 </FormLabel>
 
               
-              <Select
+              {/* <Select
                 displayEmpty
                 name="Division"
                 value={descriptionData.Division}
@@ -630,7 +630,7 @@ export default function CarForm() {
                     {division}
                   </MenuItem>
                 ))}
-              </Select>
+              </Select> */}
 
 
                 <FormControl fullWidth required sx={{ mt: 2 }}>
