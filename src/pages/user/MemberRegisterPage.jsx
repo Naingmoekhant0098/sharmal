@@ -634,7 +634,7 @@ function MemberLoginPage({ history }) {
                   </Box>
                 </Box>
               ) : current === "company" ? (
-                <Box sx={{ mt: 2, height: 650 }}>
+                <Box sx={{ mt: 2, height: {xs : "auto",sm :"auto" , md: 650 , lg : 650} }}>
                   <Typography
                     sx={{
                       fontSize: "30px",
