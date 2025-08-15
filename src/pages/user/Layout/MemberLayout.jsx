@@ -25,7 +25,9 @@ import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 import LogoutIcon from '@mui/icons-material/Logout';
 import EditIcon from '@mui/icons-material/Edit';
 import PersonIcon from '@mui/icons-material/Person';
-import { useLocation } from "react-router-dom/cjs/react-router-dom"
+import { Redirect, useHistory, useLocation } from "react-router-dom/cjs/react-router-dom"
+import CreatePost from "../Member/CreatePost"
+import NotFoundPage from "../../NotFoundPage";
 const drawerWidth = 250
 
 const listItems = [
@@ -121,6 +123,11 @@ export default function MemberLayout() {
       </List>
     </Box>
   )
+  function NotFoundRedirect() {
+    const history = useHistory();
+    history.replace('/not-found-page'); // Redirect to home
+    return null;
+  }
 
   return (
     <Box sx={{ display: "flex" }}>
@@ -187,10 +194,11 @@ export default function MemberLayout() {
           <Route exact path={path} component={MemberHome} />
            
           <Route exact path={`${path}/resume`} component={MemberResume} />
-          <Route exact path={`${path}/portfolio`} component={MemberPortfolio} />
+          <Route exact path={`${path}/create-post`} component={CreatePost} />
           <Route exact path={`${path}/contacts`} component={MemberContacts} />
           <Route exact path={`${path}/profile`} component={MemberProfilePage} />
          
+         <Route  path="*"  component={NotFoundRedirect } />
         </Switch>
       </Box>
     </Box>

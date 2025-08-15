@@ -31,7 +31,7 @@ import theme from "./theme.js";
 import MemberOtpPage from "./pages/user/MemberOtp.jsx";
 // import DashboardLayoutBranding from "./pages/user/Profile/ProfileLayout.jsx";
 import MemberLayout from "./pages/user/Layout/MemberLayout.jsx";
-import MemberProfilePage from "./pages/user/Member/Profile.jsx";
+// import MemberProfilePage from "./pages/user/Member/Profile.jsx";
 
 export default function App() {
   const [showFab, setShowFab] = useState(false);

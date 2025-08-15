@@ -11,6 +11,8 @@ import {
   FormControlLabel,
   Radio,
   FormLabel,
+  Divider,
+  Button,
 } from "@mui/material";
 
 import { toast, ToastContainer } from "react-toastify";
@@ -23,10 +25,10 @@ import MailIcon from "@mui/icons-material/Mail";
 import ApartmentIcon from "@mui/icons-material/Apartment";
 import PhoneIcon from "@mui/icons-material/Phone";
 import KeyIcon from "@mui/icons-material/Key";
-
+import FacebookIcon from "@mui/icons-material/Facebook";
 import Checkbox from "@mui/material/Checkbox";
-
-
+import FacebookLogin from "react-facebook-login";
+import facebookLogo from "../../assets/icons/facebook.png";
 function MemberLoginPage({ history }) {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -38,7 +40,9 @@ function MemberLoginPage({ history }) {
 
   const [data, setData] = useState({});
 
-  // multiple role user
+  // 1076770271246017
+  // 022db5ceddf1d9d6ab08ffaf3f405d71
+  // sharmal
   const roles = [
     {
       name: "Owner",
@@ -78,16 +82,34 @@ function MemberLoginPage({ history }) {
     //   toast.success("OTP has been sent to your email");
     // }, 1000);
   };
-
-  const handleOtpConfirm = () => {
-    if (!otp || otp.length !== 6) {
-      toast.error("Please enter a valid 6-digit OTP");
+  const handleFacebookCallback = (response) => {
+    if (response?.status === "unknown") {
+      console.error("Sorry!", "Something went wrong with facebook Login.");
       return;
     }
-    toast.success("OTP Verified Successfully");
-    // You can now call the actual registration API
+    console.log(response);
+    // // console will print following object for you.
+    //   {
+    //     "name": "Syed M Ahmad",
+    //     "email": "ssgcommando90@yahoo.com",
+    //     "picture": {
+    //         "data": {
+    //             "height": 50,
+    //             "is_silhouette": false,
+    //             "url": "https://platform-lookaside.fbsbx.com/platform/profilepic/?asid=7138203302951151&height=50&width=50&ext=1714730459&hash=AfplSQ-UxV9LeHd5wYnaKbeKEIfUjMN-pHFGZJaWwC-00g",
+    //             "width": 50
+    //         }
+    //     },
+    //     "id": "7138203302951151",
+    //     "userID": "7138203302951151",
+    //     "expiresIn": 7142,
+    //     "accessToken": "EAANdCvUejTUBO3C5uZCp0n6i9H31bCdW6bZBUcOET2aTbWlZCJA7kQoQ1jxDCsnFctxZBAQPl2kSUSqb4N6KDLM8wROXn4fZCBj1Pmgq5peKkmPv7YJWHKXLb9mOIwcBbJJGj5EaXwLURktOGSv7HeNsiGxZBPBr1jewzZAL7FxbITljSsBq6LYnhKO6xT9D5FbFZB1JWdjii63xAeU36wZDZD",
+    //     "signedRequest": "r3tHehW5aounQcMzalAtmiHR_lCmRHy0GSmrlD4w3zM.eyJ1c2VyX2lkIjoiNzEzODIwMzMwMjk1MTE1MSIsImNvZGUiOiJBUURUaEItZ3Z6RjViN09yV3VyM2tOai1FdDNQM1NGSHpheWVsMEYxSXc1NTNlTHBoZUs3M2RtTENFbVZTVjgySEZlUUFCQ0dPR19zME94RjU4LS14MFYxUWZIYkhCdDFTVl9FNG1scnh6Y2Z5RTVFNVozUy03SllRWUI2MEh1bW15b19mN3FKc3pLZENSbWFBbkE2c3JXenBCYnRfLXZIVTZjRTNYSjZnN19Db2xXNjk0Z1JDODd5eVVjT2R4NEszMHY4LXdrVlpVQWNvMXBkZGR1eTVqbFN4Yld0RkhGVlNpS282OGZxc09YdndYSXlDR0NOTjJrZEhDUDJSZElkT3VmSmRhbGs0dEo1TTRFUU9nWXJ3QllkeVlyUlY1ZlRuS3RvdGJyMF9ROHpQT21PTzQ2eXNBZmtJdGdjblFjOG5VaHQ5U0RMRlAzRVBhS0Q0dV9mY0YwbyIsImFsZ29yaXRobSI6IkhNQUMtU0hBMjU2IiwiaXNzdWVkX2F0IjoxNzEyMTM4NDU4fQ",
+    //     "graphDomain": "facebook",
+    //     "data_access_expiration_time": 1719914458
+    // }
   };
-  const [activeIndex, setActiveIndex] = useState(0);
+
   return (
     <ThemeProvider theme={theme}>
       <ToastContainer />
@@ -134,8 +156,9 @@ function MemberLoginPage({ history }) {
 
           <Box
             sx={{
+              overflowY: "scroll",
               width: { xs: "100%", md: "50%" },
-              py: { xs: 2, sm: 2, md: 4, lg: 4 },
+              py: { xs: 2, sm: 2, md: 2, lg: 2 },
               px: { md: 4, lg: 4, xl: 5 },
               display: "flex",
               flexDirection: "column",
@@ -149,7 +172,7 @@ function MemberLoginPage({ history }) {
                   display: "flex",
                   background: "#f4f4f4",
                   p: { xs: 0.2, sm: 0.2, md: 0.5, lg: 0.5, xl: 0.5 },
-                  mt: 4,
+                  // mt: 3,
                   borderRadius: "10px",
                   width: "100%",
                   maxWidth: 500,
@@ -201,7 +224,7 @@ function MemberLoginPage({ history }) {
               </Box>
 
               {current === "owner" ? (
-                <Box sx={{ mt: 2, height: 600 }}>
+                <Box sx={{ mt: 2, height: 650 }}>
                   <Typography
                     sx={{
                       fontSize: "30px",
@@ -368,11 +391,10 @@ function MemberLoginPage({ history }) {
                     />
 
                     <FormControlLabel
-                      sx={{ mt: 1 }}
                       control={<Checkbox />}
                       label="I agree with Terms and Privacy."
                     />
-                    
+
                     <LoadingButton
                       fullWidth
                       loading={loading}
@@ -389,150 +411,175 @@ function MemberLoginPage({ history }) {
                     >
                       Continue
                     </LoadingButton>
+                    <Divider sx={{ mt: 2 }}>Or</Divider>
+                    <FacebookLogin
+                      appId="1076770271246017"
+                      autoLoad={false}
+                      fields="name,email,picture"
+                      callback={handleFacebookCallback}
+                      icon={<FacebookIcon />}
+                      textButton="Continue with Facebook"
+                      buttonStyle={{
+                        border: "1px solid #6F1D8E",
+                        marginTop: "15px",
+                        borderRadius: "10px",
+                        fontWeight: 700,
+                        height: "45px",
+                        fontSize: "14px",
+                        width: "100%",
+                        textTransform: "uppercase",
+                        backgroundColor: "#ffffff",
+                        color: "#000000",
+                        display: "flex",
+                        alignItems: "center",
+                        justifyContent: "center",
+                        gap: "10px",
+                        cursor: "pointer",
+                        transition: "all 0.3s ease",
+                      }}
+                      cssClass="facebook-btn"
+                    />
                   </Box>
                 </Box>
-              ) : 
-             current==="beneficiary" ? 
-             (
-              <Box sx={{ mt: 2, height: 600 }}>
-                <Typography
-                  sx={{
-                    fontSize: "30px",
-                  }}
-                  fontWeight="bold"
-                  mb={1}
-                >
-                  Create Sharmal Beneficiary Account
-                </Typography>
-                <Typography
-                  variant="p"
-                  sx={{
-                    fontSize: 16,
-                    opacity: 0.6,
-                  }}
-                  mb={6}
-                >
-                  Experience the benefits with 10 free posts — no commitment
-                  required.
-                </Typography>
+              ) : current === "beneficiary" ? (
+                <Box sx={{ mt: 2, height: 650 }}>
+                  <Typography
+                    sx={{
+                      fontSize: "30px",
+                    }}
+                    fontWeight="bold"
+                    mb={1}
+                  >
+                    Create Sharmal Beneficiary Account
+                  </Typography>
+                  <Typography
+                    variant="p"
+                    sx={{
+                      fontSize: 16,
+                      opacity: 0.6,
+                    }}
+                    mb={6}
+                  >
+                    Experience the benefits with 10 free posts — no commitment
+                    required.
+                  </Typography>
 
-                <Box sx={{ marginTop: 1 }}>
-                  <TextField
-                    fullWidth
-                    placeholder="Enter Fullname"
-                    margin="normal"
-                    value={name || ""}
-                    onChange={(e) =>
-                      setData({ ...data, name: e.target.value })
-                    }
-                    InputProps={{
-                      startAdornment: (
-                        <InputAdornment position="start">
-                          <PersonIcon
-                            sx={{
-                              fontSize: { sm: 20, md: 30 },
-                            }}
-                          />
-                        </InputAdornment>
-                      ),
-                    }}
-                    sx={{
-                      "& .MuiOutlinedInput-root": {
-                        fontSize: { xs: 15, sm: 15, md: 15, lg: 15, xl: 16 },
-                        borderRadius: "10px",
-                      },
-                    }}
-                  />
-                 
-                  <TextField
-                    fullWidth
-                    // label="Email"
-                    margin="normal"
-                    value={data?.email}
-                    placeholder="Enter Email Address !"
-                    onChange={(e) =>
-                      setData({ ...data, email: e.target.value })
-                    }
-                    InputProps={{
-                      startAdornment: (
-                        <InputAdornment position="start">
-                          <MailIcon
-                            sx={{
-                              fontSize: { sm: 20, md: 30 },
-                            }}
-                          />
-                        </InputAdornment>
-                      ),
-                    }}
-                    sx={{
-                      "& .MuiOutlinedInput-root": {
-                        fontSize: { xs: 15, sm: 15, md: 15, lg: 15, xl: 16 },
-                        borderRadius: "10px",
-                      },
-                    }}
-                  />
-                  <TextField
-                    fullWidth
-                    margin="normal"
-                    value={data?.phone}
-                    placeholder="Enter Phone Number"
-                    onChange={(e) =>
-                      setData({ ...data, phone: e.target.value })
-                    }
-                    InputProps={{
-                      startAdornment: (
-                        <InputAdornment position="start">
-                          <PhoneIcon
-                            sx={{
-                              fontSize: { sm: 20, md: 30 },
-                            }}
-                          />
-                        </InputAdornment>
-                      ),
-                    }}
-                    sx={{
-                      "& .MuiOutlinedInput-root": {
-                        fontSize: { xs: 15, sm: 15, md: 15, lg: 15, xl: 16 },
-                        borderRadius: "10px",
-                      },
-                    }}
-                  />
-                  <TextField
-                    fullWidth
-                    // label="Password"
-                    type="password"
-                    placeholder="Enter Password "
-                    margin="normal"
-                    value={data?.password}
-                    onChange={(e) =>
-                      setData({ ...data, password: e.target.value })
-                    }
-                    InputProps={{
-                      startAdornment: (
-                        <InputAdornment position="start">
-                          <KeyIcon
-                            sx={{
-                              fontSize: { sm: 20, md: 30 },
-                            }}
-                          />
-                        </InputAdornment>
-                      ),
-                    }}
-                    sx={{
-                      "& .MuiOutlinedInput-root": {
-                        fontSize: { xs: 15, sm: 15, md: 15, lg: 15, xl: 16 },
-                        borderRadius: "10px", // reduced radius
-                      },
-                    }}
-                  />
+                  <Box sx={{ marginTop: 1 }}>
+                    <TextField
+                      fullWidth
+                      placeholder="Enter Fullname"
+                      margin="normal"
+                      value={name || ""}
+                      onChange={(e) =>
+                        setData({ ...data, name: e.target.value })
+                      }
+                      InputProps={{
+                        startAdornment: (
+                          <InputAdornment position="start">
+                            <PersonIcon
+                              sx={{
+                                fontSize: { sm: 20, md: 30 },
+                              }}
+                            />
+                          </InputAdornment>
+                        ),
+                      }}
+                      sx={{
+                        "& .MuiOutlinedInput-root": {
+                          fontSize: { xs: 15, sm: 15, md: 15, lg: 15, xl: 16 },
+                          borderRadius: "10px",
+                        },
+                      }}
+                    />
 
-                  <FormControlLabel
-                    sx={{ mt: 2 }}
-                    control={<Checkbox />}
-                    label="I agree with Terms and Privacy."
-                  />
+                    <TextField
+                      fullWidth
+                      // label="Email"
+                      margin="normal"
+                      value={data?.email}
+                      placeholder="Enter Email Address !"
+                      onChange={(e) =>
+                        setData({ ...data, email: e.target.value })
+                      }
+                      InputProps={{
+                        startAdornment: (
+                          <InputAdornment position="start">
+                            <MailIcon
+                              sx={{
+                                fontSize: { sm: 20, md: 30 },
+                              }}
+                            />
+                          </InputAdornment>
+                        ),
+                      }}
+                      sx={{
+                        "& .MuiOutlinedInput-root": {
+                          fontSize: { xs: 15, sm: 15, md: 15, lg: 15, xl: 16 },
+                          borderRadius: "10px",
+                        },
+                      }}
+                    />
+                    <TextField
+                      fullWidth
+                      margin="normal"
+                      value={data?.phone}
+                      placeholder="Enter Phone Number"
+                      onChange={(e) =>
+                        setData({ ...data, phone: e.target.value })
+                      }
+                      InputProps={{
+                        startAdornment: (
+                          <InputAdornment position="start">
+                            <PhoneIcon
+                              sx={{
+                                fontSize: { sm: 20, md: 30 },
+                              }}
+                            />
+                          </InputAdornment>
+                        ),
+                      }}
+                      sx={{
+                        "& .MuiOutlinedInput-root": {
+                          fontSize: { xs: 15, sm: 15, md: 15, lg: 15, xl: 16 },
+                          borderRadius: "10px",
+                        },
+                      }}
+                    />
+                    <TextField
+                      fullWidth
+                      // label="Password"
+                      type="password"
+                      placeholder="Enter Password "
+                      margin="normal"
+                      value={data?.password}
+                      onChange={(e) =>
+                        setData({ ...data, password: e.target.value })
+                      }
+                      InputProps={{
+                        startAdornment: (
+                          <InputAdornment position="start">
+                            <KeyIcon
+                              sx={{
+                                fontSize: { sm: 20, md: 30 },
+                              }}
+                            />
+                          </InputAdornment>
+                        ),
+                      }}
+                      sx={{
+                        "& .MuiOutlinedInput-root": {
+                          fontSize: { xs: 15, sm: 15, md: 15, lg: 15, xl: 16 },
+                          borderRadius: "10px", // reduced radius
+                        },
+                      }}
+                    />
 
-                  {/* <TextField
+                    <FormControlLabel
+                      control={<Checkbox />}
+                      label="I agree with Terms and Privacy."
+                    />
+
+                    {/* <TextField
                    fullWidth
                    label="Confirm Password"
                    type="password"
@@ -540,192 +587,217 @@ function MemberLoginPage({ history }) {
                    value={confirmPassword}
                    onChange={(e) => setConfirmPassword(e.target.value)}
                  /> */}
-                  <LoadingButton
-                    fullWidth
-                    loading={loading}
-                    onClick={handleNext}
-                    variant="contained"
-                    color="primary"
-                    sx={{
-                      mt: 2,
-                      borderRadius: "10px",
-                      fontWeight: 600,
-                      height: "45px",
-                      textTransform: "uppercase",
-                    }}
-                  >
-                    Continue
-                  </LoadingButton>
+                    <LoadingButton
+                      fullWidth
+                      loading={loading}
+                      onClick={handleNext}
+                      variant="contained"
+                      color="primary"
+                      sx={{
+                        mt: 2,
+                        borderRadius: "10px",
+                        fontWeight: 600,
+                        height: "45px",
+                        textTransform: "uppercase",
+                      }}
+                    >
+                      Continue
+                    </LoadingButton>
+                    <Divider sx={{ mt: 2 }}>Or</Divider>
+                    <FacebookLogin
+                      appId="1076770271246017"
+                      autoLoad={false}
+                      fields="name,email,picture"
+                      callback={handleFacebookCallback}
+                      icon={<FacebookIcon />}
+                      textButton="Continue with Facebook"
+                      buttonStyle={{
+                        border: "1px solid #6F1D8E",
+                        marginTop: "15px",
+                        borderRadius: "10px",
+                        fontWeight: 700,
+                        height: "45px",
+                        fontSize: "14px",
+                        width: "100%",
+                        textTransform: "uppercase",
+                        backgroundColor: "#ffffff",
+                        color: "#000000",
+                        display: "flex",
+                        alignItems: "center",
+                        justifyContent: "center",
+                        gap: "10px",
+                        cursor: "pointer",
+                        transition: "all 0.3s ease",
+                      }}
+                      cssClass="facebook-btn"
+                    />
+                  </Box>
                 </Box>
-              </Box>
-            )
-             : 
-             current==="company" ?  (
-              <Box sx={{ mt: 2, height: 600 }}>
-                <Typography
-                  sx={{
-                    fontSize: "30px",
-                  }}
-                  fontWeight="bold"
-                  mb={1}
-                >
-                  Create Sharmal Company Account
-                </Typography>
-                <Typography
-                  variant="p"
-                  sx={{
-                    fontSize: 16,
-                    opacity: 0.6,
-                  }}
-                  mb={6}
-                >
-                  Experience the benefits with 10 free posts — no commitment
-                  required.
-                </Typography>
+              ) : current === "company" ? (
+                <Box sx={{ mt: 2, height: 650 }}>
+                  <Typography
+                    sx={{
+                      fontSize: "30px",
+                    }}
+                    fontWeight="bold"
+                    mb={1}
+                  >
+                    Create Sharmal Company Account
+                  </Typography>
+                  <Typography
+                    variant="p"
+                    sx={{
+                      fontSize: 16,
+                      opacity: 0.6,
+                    }}
+                    mb={6}
+                  >
+                    Experience the benefits with 10 free posts — no commitment
+                    required.
+                  </Typography>
 
-                <Box sx={{ marginTop: 1 }}>
-                  <TextField
-                    fullWidth
-                    placeholder="Enter Fullname"
-                    margin="normal"
-                    value={name || ""}
-                    onChange={(e) =>
-                      setData({ ...data, name: e.target.value })
-                    }
-                    InputProps={{
-                      startAdornment: (
-                        <InputAdornment position="start">
-                          <PersonIcon
-                            sx={{
-                              fontSize: { sm: 20, md: 30 },
-                            }}
-                          />
-                        </InputAdornment>
-                      ),
-                    }}
-                    sx={{
-                      "& .MuiOutlinedInput-root": {
-                        fontSize: { xs: 15, sm: 15, md: 15, lg: 15, xl: 16 },
-                        borderRadius: "10px",
-                      },
-                    }}
-                  />
-                  <TextField
-                    fullWidth
-                    // label="Email"
-                    margin="normal"
-                    value={data?.company_name}
-                    placeholder="Enter Company Name"
-                    onChange={(e) =>
-                      setData({ ...data, company_name: e.target.value })
-                    }
-                    InputProps={{
-                      startAdornment: (
-                        <InputAdornment position="start">
-                          <ApartmentIcon
-                            sx={{
-                              fontSize: { sm: 20, md: 30 },
-                            }}
-                          />
-                        </InputAdornment>
-                      ),
-                    }}
-                    sx={{
-                      "& .MuiOutlinedInput-root": {
-                        fontSize: { xs: 15, sm: 15, md: 15, lg: 15, xl: 16 },
-                        borderRadius: "10px",
-                      },
-                    }}
-                  />
-                  <TextField
-                    fullWidth
-                    // label="Email"
-                    margin="normal"
-                    value={data?.email}
-                    placeholder="Enter Email Address !"
-                    onChange={(e) =>
-                      setData({ ...data, email: e.target.value })
-                    }
-                    InputProps={{
-                      startAdornment: (
-                        <InputAdornment position="start">
-                          <MailIcon
-                            sx={{
-                              fontSize: { sm: 20, md: 30 },
-                            }}
-                          />
-                        </InputAdornment>
-                      ),
-                    }}
-                    sx={{
-                      "& .MuiOutlinedInput-root": {
-                        fontSize: { xs: 15, sm: 15, md: 15, lg: 15, xl: 16 },
-                        borderRadius: "10px",
-                      },
-                    }}
-                  />
-                  <TextField
-                    fullWidth
-                    margin="normal"
-                    value={data?.phone}
-                    placeholder="Enter Phone Number"
-                    onChange={(e) =>
-                      setData({ ...data, phone: e.target.value })
-                    }
-                    InputProps={{
-                      startAdornment: (
-                        <InputAdornment position="start">
-                          <PhoneIcon
-                            sx={{
-                              fontSize: { sm: 20, md: 30 },
-                            }}
-                          />
-                        </InputAdornment>
-                      ),
-                    }}
-                    sx={{
-                      "& .MuiOutlinedInput-root": {
-                        fontSize: { xs: 15, sm: 15, md: 15, lg: 15, xl: 16 },
-                        borderRadius: "10px",
-                      },
-                    }}
-                  />
-                  <TextField
-                    fullWidth
-                    // label="Password"
-                    type="password"
-                    placeholder="Enter Password "
-                    margin="normal"
-                    value={data?.password}
-                    onChange={(e) =>
-                      setData({ ...data, password: e.target.value })
-                    }
-                    InputProps={{
-                      startAdornment: (
-                        <InputAdornment position="start">
-                          <KeyIcon
-                            sx={{
-                              fontSize: { sm: 20, md: 30 },
-                            }}
-                          />
-                        </InputAdornment>
-                      ),
-                    }}
-                    sx={{
-                      "& .MuiOutlinedInput-root": {
-                        fontSize: { xs: 15, sm: 15, md: 15, lg: 15, xl: 16 },
-                        borderRadius: "10px", // reduced radius
-                      },
-                    }}
-                  />
+                  <Box sx={{ marginTop: 1 }}>
+                    <TextField
+                      fullWidth
+                      placeholder="Enter Fullname"
+                      margin="normal"
+                      value={name || ""}
+                      onChange={(e) =>
+                        setData({ ...data, name: e.target.value })
+                      }
+                      InputProps={{
+                        startAdornment: (
+                          <InputAdornment position="start">
+                            <PersonIcon
+                              sx={{
+                                fontSize: { sm: 20, md: 30 },
+                              }}
+                            />
+                          </InputAdornment>
+                        ),
+                      }}
+                      sx={{
+                        "& .MuiOutlinedInput-root": {
+                          fontSize: { xs: 15, sm: 15, md: 15, lg: 15, xl: 16 },
+                          borderRadius: "10px",
+                        },
+                      }}
+                    />
+                    <TextField
+                      fullWidth
+                      // label="Email"
+                      margin="normal"
+                      value={data?.company_name}
+                      placeholder="Enter Company Name"
+                      onChange={(e) =>
+                        setData({ ...data, company_name: e.target.value })
+                      }
+                      InputProps={{
+                        startAdornment: (
+                          <InputAdornment position="start">
+                            <ApartmentIcon
+                              sx={{
+                                fontSize: { sm: 20, md: 30 },
+                              }}
+                            />
+                          </InputAdornment>
+                        ),
+                      }}
+                      sx={{
+                        "& .MuiOutlinedInput-root": {
+                          fontSize: { xs: 15, sm: 15, md: 15, lg: 15, xl: 16 },
+                          borderRadius: "10px",
+                        },
+                      }}
+                    />
+                    <TextField
+                      fullWidth
+                      // label="Email"
+                      margin="normal"
+                      value={data?.email}
+                      placeholder="Enter Email Address !"
+                      onChange={(e) =>
+                        setData({ ...data, email: e.target.value })
+                      }
+                      InputProps={{
+                        startAdornment: (
+                          <InputAdornment position="start">
+                            <MailIcon
+                              sx={{
+                                fontSize: { sm: 20, md: 30 },
+                              }}
+                            />
+                          </InputAdornment>
+                        ),
+                      }}
+                      sx={{
+                        "& .MuiOutlinedInput-root": {
+                          fontSize: { xs: 15, sm: 15, md: 15, lg: 15, xl: 16 },
+                          borderRadius: "10px",
+                        },
+                      }}
+                    />
+                    <TextField
+                      fullWidth
+                      margin="normal"
+                      value={data?.phone}
+                      placeholder="Enter Phone Number"
+                      onChange={(e) =>
+                        setData({ ...data, phone: e.target.value })
+                      }
+                      InputProps={{
+                        startAdornment: (
+                          <InputAdornment position="start">
+                            <PhoneIcon
+                              sx={{
+                                fontSize: { sm: 20, md: 30 },
+                              }}
+                            />
+                          </InputAdornment>
+                        ),
+                      }}
+                      sx={{
+                        "& .MuiOutlinedInput-root": {
+                          fontSize: { xs: 15, sm: 15, md: 15, lg: 15, xl: 16 },
+                          borderRadius: "10px",
+                        },
+                      }}
+                    />
+                    <TextField
+                      fullWidth
+                      // label="Password"
+                      type="password"
+                      placeholder="Enter Password "
+                      margin="normal"
+                      value={data?.password}
+                      onChange={(e) =>
+                        setData({ ...data, password: e.target.value })
+                      }
+                      InputProps={{
+                        startAdornment: (
+                          <InputAdornment position="start">
+                            <KeyIcon
+                              sx={{
+                                fontSize: { sm: 20, md: 30 },
+                              }}
+                            />
+                          </InputAdornment>
+                        ),
+                      }}
+                      sx={{
+                        "& .MuiOutlinedInput-root": {
+                          fontSize: { xs: 15, sm: 15, md: 15, lg: 15, xl: 16 },
+                          borderRadius: "10px", // reduced radius
+                        },
+                      }}
+                    />
 
-                  <FormControlLabel
-                    sx={{ mt: 2 }}
-                    control={<Checkbox />}
-                    label="I agree with Terms and Privacy."
-                  />
+                    <FormControlLabel
+                      control={<Checkbox />}
+                      label="I agree with Terms and Privacy."
+                    />
 
-                  {/* <TextField
+                    {/* <TextField
                    fullWidth
                    label="Confirm Password"
                    type="password"
@@ -733,165 +805,191 @@ function MemberLoginPage({ history }) {
                    value={confirmPassword}
                    onChange={(e) => setConfirmPassword(e.target.value)}
                  /> */}
-                  <LoadingButton
-                    fullWidth
-                    loading={loading}
-                    onClick={handleNext}
-                    variant="contained"
-                    color="primary"
-                    sx={{
-                      mt: 2,
-                      borderRadius: "10px",
-                      fontWeight: 600,
-                      height: "45px",
-                      textTransform: "uppercase",
-                    }}
-                  >
-                    Continue
-                  </LoadingButton>
+                    <LoadingButton
+                      fullWidth
+                      loading={loading}
+                      onClick={handleNext}
+                      variant="contained"
+                      color="primary"
+                      sx={{
+                        mt: 2,
+                        borderRadius: "10px",
+                        fontWeight: 600,
+                        height: "45px",
+                        textTransform: "uppercase",
+                      }}
+                    >
+                      Continue
+                    </LoadingButton>
+                    <Divider sx={{ mt: 2 }}>Or</Divider>
+                    <FacebookLogin
+                      appId="1076770271246017"
+                      autoLoad={false}
+                      fields="name,email,picture"
+                      callback={handleFacebookCallback}
+                      icon={<FacebookIcon />}
+                      textButton="Continue with Facebook"
+                      buttonStyle={{
+                        border: "1px solid #6F1D8E",
+                        marginTop: "15px",
+                        borderRadius: "10px",
+                        fontWeight: 700,
+                        height: "45px",
+                        fontSize: "14px",
+                        width: "100%",
+                        textTransform: "uppercase",
+                        backgroundColor: "#ffffff",
+                        color: "#000000",
+                        display: "flex",
+                        alignItems: "center",
+                        justifyContent: "center",
+                        gap: "10px",
+                        cursor: "pointer",
+                        transition: "all 0.3s ease",
+                      }}
+                      cssClass="facebook-btn"
+                    />
+                  </Box>
                 </Box>
-              </Box>
-            ) :
-            (
-              <Box sx={{ mt: 2, height: 600 }}>
-                <Typography
-                  sx={{
-                    fontSize: "30px",
-                  }}
-                  fontWeight="bold"
-                  mb={1}
-                >
-                  Create Sharmal Construction Account
-                </Typography>
-                <Typography
-                  variant="p"
-                  sx={{
-                    fontSize: 16,
-                    opacity: 0.6,
-                  }}
-                  mb={6}
-                >
-                  Experience the benefits with 10 free posts — no commitment
-                  required.
-                </Typography>
+              ) : (
+                <Box sx={{ mt: 2, minHeight: 650 }}>
+                  <Typography
+                    sx={{
+                      fontSize: "30px",
+                    }}
+                    fontWeight="bold"
+                    mb={1}
+                  >
+                    Create Construction Account
+                  </Typography>
+                  <Typography
+                    variant="p"
+                    sx={{
+                      fontSize: 16,
+                      opacity: 0.6,
+                    }}
+                    mb={6}
+                  >
+                    Experience the benefits with 10 free posts — no commitment
+                    required.
+                  </Typography>
 
-                <Box sx={{ marginTop: 1 }}>
-                  <TextField
-                    fullWidth
-                    placeholder="Enter Fullname"
-                    margin="normal"
-                    value={name || ""}
-                    onChange={(e) =>
-                      setData({ ...data, name: e.target.value })
-                    }
-                    InputProps={{
-                      startAdornment: (
-                        <InputAdornment position="start">
-                          <PersonIcon
-                            sx={{
-                              fontSize: { sm: 20, md: 30 },
-                            }}
-                          />
-                        </InputAdornment>
-                      ),
-                    }}
-                    sx={{
-                      "& .MuiOutlinedInput-root": {
-                        fontSize: { xs: 15, sm: 15, md: 15, lg: 15, xl: 16 },
-                        borderRadius: "10px",
-                      },
-                    }}
-                  />
-                 
-                  <TextField
-                    fullWidth
-                    // label="Email"
-                    margin="normal"
-                    value={data?.email}
-                    placeholder="Enter Email Address !"
-                    onChange={(e) =>
-                      setData({ ...data, email: e.target.value })
-                    }
-                    InputProps={{
-                      startAdornment: (
-                        <InputAdornment position="start">
-                          <MailIcon
-                            sx={{
-                              fontSize: { sm: 20, md: 30 },
-                            }}
-                          />
-                        </InputAdornment>
-                      ),
-                    }}
-                    sx={{
-                      "& .MuiOutlinedInput-root": {
-                        fontSize: { xs: 15, sm: 15, md: 15, lg: 15, xl: 16 },
-                        borderRadius: "10px",
-                      },
-                    }}
-                  />
-                  <TextField
-                    fullWidth
-                    margin="normal"
-                    value={data?.phone}
-                    placeholder="Enter Phone Number"
-                    onChange={(e) =>
-                      setData({ ...data, phone: e.target.value })
-                    }
-                    InputProps={{
-                      startAdornment: (
-                        <InputAdornment position="start">
-                          <PhoneIcon
-                            sx={{
-                              fontSize: { sm: 20, md: 30 },
-                            }}
-                          />
-                        </InputAdornment>
-                      ),
-                    }}
-                    sx={{
-                      "& .MuiOutlinedInput-root": {
-                        fontSize: { xs: 15, sm: 15, md: 15, lg: 15, xl: 16 },
-                        borderRadius: "10px",
-                      },
-                    }}
-                  />
-                  <TextField
-                    fullWidth
-                    // label="Password"
-                    type="password"
-                    placeholder="Enter Password "
-                    margin="normal"
-                    value={data?.password}
-                    onChange={(e) =>
-                      setData({ ...data, password: e.target.value })
-                    }
-                    InputProps={{
-                      startAdornment: (
-                        <InputAdornment position="start">
-                          <KeyIcon
-                            sx={{
-                              fontSize: { sm: 20, md: 30 },
-                            }}
-                          />
-                        </InputAdornment>
-                      ),
-                    }}
-                    sx={{
-                      "& .MuiOutlinedInput-root": {
-                        fontSize: { xs: 15, sm: 15, md: 15, lg: 15, xl: 16 },
-                        borderRadius: "10px", // reduced radius
-                      },
-                    }}
-                  />
+                  <Box sx={{ marginTop: 1 }}>
+                    <TextField
+                      fullWidth
+                      placeholder="Enter Fullname"
+                      margin="normal"
+                      value={name || ""}
+                      onChange={(e) =>
+                        setData({ ...data, name: e.target.value })
+                      }
+                      InputProps={{
+                        startAdornment: (
+                          <InputAdornment position="start">
+                            <PersonIcon
+                              sx={{
+                                fontSize: { sm: 20, md: 30 },
+                              }}
+                            />
+                          </InputAdornment>
+                        ),
+                      }}
+                      sx={{
+                        "& .MuiOutlinedInput-root": {
+                          fontSize: { xs: 15, sm: 15, md: 15, lg: 15, xl: 16 },
+                          borderRadius: "10px",
+                        },
+                      }}
+                    />
 
-                  <FormControlLabel
-                    sx={{ mt: 2 }}
-                    control={<Checkbox />}
-                    label="I agree with Terms and Privacy."
-                  />
+                    <TextField
+                      fullWidth
+                      // label="Email"
+                      margin="normal"
+                      value={data?.email}
+                      placeholder="Enter Email Address !"
+                      onChange={(e) =>
+                        setData({ ...data, email: e.target.value })
+                      }
+                      InputProps={{
+                        startAdornment: (
+                          <InputAdornment position="start">
+                            <MailIcon
+                              sx={{
+                                fontSize: { sm: 20, md: 30 },
+                              }}
+                            />
+                          </InputAdornment>
+                        ),
+                      }}
+                      sx={{
+                        "& .MuiOutlinedInput-root": {
+                          fontSize: { xs: 15, sm: 15, md: 15, lg: 15, xl: 16 },
+                          borderRadius: "10px",
+                        },
+                      }}
+                    />
+                    <TextField
+                      fullWidth
+                      margin="normal"
+                      value={data?.phone}
+                      placeholder="Enter Phone Number"
+                      onChange={(e) =>
+                        setData({ ...data, phone: e.target.value })
+                      }
+                      InputProps={{
+                        startAdornment: (
+                          <InputAdornment position="start">
+                            <PhoneIcon
+                              sx={{
+                                fontSize: { sm: 20, md: 30 },
+                              }}
+                            />
+                          </InputAdornment>
+                        ),
+                      }}
+                      sx={{
+                        "& .MuiOutlinedInput-root": {
+                          fontSize: { xs: 15, sm: 15, md: 15, lg: 15, xl: 16 },
+                          borderRadius: "10px",
+                        },
+                      }}
+                    />
+                    <TextField
+                      fullWidth
+                      // label="Password"
+                      type="password"
+                      placeholder="Enter Password "
+                      margin="normal"
+                      value={data?.password}
+                      onChange={(e) =>
+                        setData({ ...data, password: e.target.value })
+                      }
+                      InputProps={{
+                        startAdornment: (
+                          <InputAdornment position="start">
+                            <KeyIcon
+                              sx={{
+                                fontSize: { sm: 20, md: 30 },
+                              }}
+                            />
+                          </InputAdornment>
+                        ),
+                      }}
+                      sx={{
+                        "& .MuiOutlinedInput-root": {
+                          fontSize: { xs: 15, sm: 15, md: 15, lg: 15, xl: 16 },
+                          borderRadius: "10px", // reduced radius
+                        },
+                      }}
+                    />
 
-                  {/* <TextField
+                    <FormControlLabel
+                      control={<Checkbox />}
+                      label="I agree with Terms and Privacy."
+                    />
+
+                    {/* <TextField
                    fullWidth
                    label="Confirm Password"
                    type="password"
@@ -899,28 +997,56 @@ function MemberLoginPage({ history }) {
                    value={confirmPassword}
                    onChange={(e) => setConfirmPassword(e.target.value)}
                  /> */}
-                  <LoadingButton
-                    fullWidth
-                    loading={loading}
-                    onClick={handleNext}
-                    variant="contained"
-                    color="primary"
-                    sx={{
-                      mt: 2,
-                      borderRadius: "10px",
-                      fontWeight: 600,
-                      height: "45px",
-                      textTransform: "uppercase",
-                    }}
-                  >
-                    Continue
-                  </LoadingButton>
-                </Box>
-              </Box>
-            )
-              }
+                    <LoadingButton
+                      fullWidth
+                      loading={loading}
+                      onClick={handleNext}
+                      variant="contained"
+                      color="primary"
+                      sx={{
+                        mt: 2,
+                        borderRadius: "10px",
+                        fontWeight: 600,
+                        height: "45px",
+                        textTransform: "uppercase",
+                      }}
+                    >
+                      Continue
+                    </LoadingButton>
 
-              <Typography textAlign="center" mt={2}>
+                    <Divider sx={{ mt: 2 }}>Or</Divider>
+                    <FacebookLogin
+                      appId="1076770271246017"
+                      autoLoad={false}
+                      fields="name,email,picture"
+                      callback={handleFacebookCallback}
+                      icon={<FacebookIcon />}
+                      textButton="Continue with Facebook"
+                      buttonStyle={{
+                        border: "1px solid #6F1D8E",
+                        marginTop: "15px",
+                        borderRadius: "10px",
+                        fontWeight: 700,
+                        height: "45px",
+                        fontSize: "14px",
+                        width: "100%",
+                        textTransform: "uppercase",
+                        backgroundColor: "#ffffff",
+                        color: "#000000",
+                        display: "flex",
+                        alignItems: "center",
+                        justifyContent: "center",
+                        gap: "10px",
+                        cursor: "pointer",
+                        transition: "all 0.3s ease",
+                      }}
+                      cssClass="facebook-btn"
+                    />
+                  </Box>
+                </Box>
+              )}
+
+              <Typography textAlign="center" mt={5}>
                 Already have an account?{" "}
                 <Link
                   onClick={() => history.push("/member/login")}

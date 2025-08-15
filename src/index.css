@@ -53,10 +53,18 @@ box-shadow: 38px 34px 62px -33px rgba(0,0,0,0.58);
 
 }
 
+circle{
+  background:  red!important;
+}
+
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
   -webkit-appearance: none;
   margin: 0;
+}
+.facebook-btn:hover {
+  color: white !important;
+  background: #6F1D8E !important; /* theme.palette.primary.main */
 }
 
 /* Firefox */
