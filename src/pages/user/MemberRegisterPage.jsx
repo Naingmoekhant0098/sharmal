@@ -28,7 +28,7 @@ import KeyIcon from "@mui/icons-material/Key";
 import FacebookIcon from "@mui/icons-material/Facebook";
 import Checkbox from "@mui/material/Checkbox";
 import FacebookLogin from "react-facebook-login";
-import facebookLogo from "../../assets/icons/facebook.png";
+
 function MemberLoginPage({ history }) {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -127,10 +127,16 @@ function MemberLoginPage({ history }) {
         }}
       >
         <Box
-          elevation={4}
+          // elevation={4}
           sx={{
             width: "100%",
-            height: "100vh",
+            height: {
+              xs: "100%",
+              sm: "100%",
+              md: "100vh",
+              lg: "100vh",
+              xl: "100vh",
+            },
             px: { xs: 2, sm: 0 },
             display: "flex",
             flexDirection: { xs: "column", md: "row" },
@@ -157,6 +163,7 @@ function MemberLoginPage({ history }) {
           <Box
             sx={{
               overflowY: "scroll",
+              height: "auto",
               width: { xs: "100%", md: "50%" },
               py: { xs: 2, sm: 2, md: 2, lg: 2 },
               px: { md: 4, lg: 4, xl: 5 },
@@ -186,7 +193,7 @@ function MemberLoginPage({ history }) {
                     top: 4,
                     left: `${
                       roles.findIndex((r) => r.value === current) *
-                      (100 / roles.length)
+                      (100 / roles.length -0.6)
                     }%`,
                     width: `${100 / roles.length}%`,
                     height: "calc(100% - 8px)",
@@ -224,7 +231,13 @@ function MemberLoginPage({ history }) {
               </Box>
 
               {current === "owner" ? (
-                <Box sx={{ mt: 2, height: 650 }}>
+                <Box
+                  sx={{
+                    mt: 2,
+                    minHeight : 650,
+                    height: { xs: "auto", sm: "auto", md: 650, lg: 650 , xl : 720 },
+                  }}
+                >
                   <Typography
                     sx={{
                       fontSize: "30px",
@@ -260,13 +273,14 @@ function MemberLoginPage({ history }) {
                           <InputAdornment position="start">
                             <PersonIcon
                               sx={{
-                                fontSize: { sm: 20, md: 30 },
+                                fontSize: { sm: 20, md: 30 , lg : 30 , xl : 20 },
                               }}
                             />
                           </InputAdornment>
                         ),
                       }}
                       sx={{
+                        mt: 0,
                         "& .MuiOutlinedInput-root": {
                           fontSize: { xs: 15, sm: 15, md: 15, lg: 15, xl: 16 },
                           borderRadius: "10px",
@@ -288,14 +302,14 @@ function MemberLoginPage({ history }) {
                           <InputAdornment position="start">
                             <MailIcon
                               sx={{
-                                fontSize: { sm: 20, md: 30 },
+                              fontSize: { sm: 20, md: 30 , lg : 30 , xl : 20 },
                               }}
                             />
                           </InputAdornment>
                         ),
                       }}
                       sx={{
-                        mt: 2,
+                        mt: { xs: 1, sm: 1, md: 2, lg: 2, xl: 2 },
 
                         "& .MuiOutlinedInput-root": {
                           fontSize: { xs: 15, sm: 15, md: 15, lg: 15, xl: 16 },
@@ -316,14 +330,14 @@ function MemberLoginPage({ history }) {
                           <InputAdornment position="start">
                             <PhoneIcon
                               sx={{
-                                fontSize: { sm: 20, md: 30 },
+                              fontSize: { sm: 20, md: 30 , lg : 30 , xl : 20 },
                               }}
                             />
                           </InputAdornment>
                         ),
                       }}
                       sx={{
-                        mt: 2,
+                        mt: {xs :1 , sm:1 , md:2 , lg:2 , xl:2},
                         "& .MuiOutlinedInput-root": {
                           fontSize: { xs: 15, sm: 15, md: 15, lg: 15, xl: 16 },
                           borderRadius: "10px", // reduced radius
@@ -346,14 +360,14 @@ function MemberLoginPage({ history }) {
                           <InputAdornment position="start">
                             <KeyIcon
                               sx={{
-                                fontSize: { sm: 20, md: 30 },
+                              fontSize: { sm: 20, md: 30 , lg : 30 , xl : 20 },
                               }}
                             />
                           </InputAdornment>
                         ),
                       }}
                       sx={{
-                        mt: 2,
+                        mt: { xs: 1, sm: 1, md: 2, lg: 2, xl: 2 },
                         "& .MuiOutlinedInput-root": {
                           fontSize: { xs: 15, sm: 15, md: 15, lg: 15, xl: 16 },
                           borderRadius: "10px", // reduced radius
@@ -375,14 +389,14 @@ function MemberLoginPage({ history }) {
                           <InputAdornment position="start">
                             <KeyIcon
                               sx={{
-                                fontSize: { sm: 20, md: 30 },
+                              fontSize: { sm: 20, md: 30 , lg : 30 , xl : 20 },
                               }}
                             />
                           </InputAdornment>
                         ),
                       }}
                       sx={{
-                        mt: 2,
+                        mt: { xs: 1, sm: 1, md: 2, lg: 2, xl: 2 },
                         "& .MuiOutlinedInput-root": {
                           fontSize: { xs: 15, sm: 15, md: 15, lg: 15, xl: 16 },
                           borderRadius: "10px", // reduced radius
@@ -390,10 +404,26 @@ function MemberLoginPage({ history }) {
                       }}
                     />
 
-                    <FormControlLabel
-                      control={<Checkbox />}
-                      label="I agree with Terms and Privacy."
-                    />
+                    <Box
+                      sx={{
+                        width: "100%",
+                        display: "flex",
+                        alignItems: "center",
+                        gap: 0,
+                        mt: 1,
+                      }}
+                    >
+                      <FormControlLabel
+                        sx={{
+                          mr: 0,
+                        }}
+                        control={<Checkbox />}
+                      />
+                      <Typography>
+                        I agree with <a href="#">Terms</a> and{" "}
+                        <a href="#">Privacy</a>.
+                      </Typography>
+                    </Box>
 
                     <LoadingButton
                       fullWidth
@@ -402,7 +432,7 @@ function MemberLoginPage({ history }) {
                       variant="contained"
                       color="primary"
                       sx={{
-                        mt: 2,
+                        mt: 1,
                         borderRadius: "10px",
                         fontWeight: 600,
                         height: "45px",
@@ -411,6 +441,7 @@ function MemberLoginPage({ history }) {
                     >
                       Continue
                     </LoadingButton>
+
                     <Divider sx={{ mt: 2 }}>Or</Divider>
                     <FacebookLogin
                       appId="1076770271246017"
@@ -442,7 +473,7 @@ function MemberLoginPage({ history }) {
                   </Box>
                 </Box>
               ) : current === "beneficiary" ? (
-                <Box sx={{ mt: 2, height: 650 }}>
+                <Box sx={{ mt: 2,     minHeight : 650,    height: { xs: "auto", sm: "auto", md: 650, lg: 650 , xl : 720 }, }}>
                   <Typography
                     sx={{
                       fontSize: "30px",
@@ -478,13 +509,14 @@ function MemberLoginPage({ history }) {
                           <InputAdornment position="start">
                             <PersonIcon
                               sx={{
-                                fontSize: { sm: 20, md: 30 },
+                              fontSize: { sm: 20, md: 30 , lg : 30 , xl : 20 },
                               }}
                             />
                           </InputAdornment>
                         ),
                       }}
                       sx={{
+                        mt: {xs :1 , sm:1 , md:2 , lg:2 , xl:2},
                         "& .MuiOutlinedInput-root": {
                           fontSize: { xs: 15, sm: 15, md: 15, lg: 15, xl: 16 },
                           borderRadius: "10px",
@@ -506,13 +538,14 @@ function MemberLoginPage({ history }) {
                           <InputAdornment position="start">
                             <MailIcon
                               sx={{
-                                fontSize: { sm: 20, md: 30 },
+                              fontSize: { sm: 20, md: 30 , lg : 30 , xl : 20 },
                               }}
                             />
                           </InputAdornment>
                         ),
                       }}
                       sx={{
+                        mt: {xs :1 , sm:1 , md:2 , lg:2 , xl:2},
                         "& .MuiOutlinedInput-root": {
                           fontSize: { xs: 15, sm: 15, md: 15, lg: 15, xl: 16 },
                           borderRadius: "10px",
@@ -532,13 +565,14 @@ function MemberLoginPage({ history }) {
                           <InputAdornment position="start">
                             <PhoneIcon
                               sx={{
-                                fontSize: { sm: 20, md: 30 },
+                              fontSize: { sm: 20, md: 30 , lg : 30 , xl : 20 },
                               }}
                             />
                           </InputAdornment>
                         ),
                       }}
                       sx={{
+                        mt: {xs :1 , sm:1 , md:2 , lg:2 , xl:2},
                         "& .MuiOutlinedInput-root": {
                           fontSize: { xs: 15, sm: 15, md: 15, lg: 15, xl: 16 },
                           borderRadius: "10px",
@@ -560,13 +594,14 @@ function MemberLoginPage({ history }) {
                           <InputAdornment position="start">
                             <KeyIcon
                               sx={{
-                                fontSize: { sm: 20, md: 30 },
+                              fontSize: { sm: 20, md: 30 , lg : 30 , xl : 20 },
                               }}
                             />
                           </InputAdornment>
                         ),
                       }}
                       sx={{
+                        mt: {xs :1 , sm:1 , md:2 , lg:2 , xl:2},
                         "& .MuiOutlinedInput-root": {
                           fontSize: { xs: 15, sm: 15, md: 15, lg: 15, xl: 16 },
                           borderRadius: "10px", // reduced radius
@@ -574,19 +609,27 @@ function MemberLoginPage({ history }) {
                       }}
                     />
 
-                    <FormControlLabel
-                      control={<Checkbox />}
-                      label="I agree with Terms and Privacy."
-                    />
+                    <Box
+                      sx={{
+                        width: "100%",
+                        display: "flex",
+                        alignItems: "center",
+                        gap: 0,
+                        mt: 1,
+                      }}
+                    >
+                      <FormControlLabel
+                        sx={{
+                          mr: 0,
+                        }}
+                        control={<Checkbox />}
+                      />
+                      <Typography>
+                        I agree with <a href="#">Terms</a> and{" "}
+                        <a href="#">Privacy</a>.
+                      </Typography>
+                    </Box>
 
-                    {/* <TextField
-                   fullWidth
-                   label="Confirm Password"
-                   type="password"
-                   margin="normal"
-                   value={confirmPassword}
-                   onChange={(e) => setConfirmPassword(e.target.value)}
-                 /> */}
                     <LoadingButton
                       fullWidth
                       loading={loading}
@@ -594,7 +637,7 @@ function MemberLoginPage({ history }) {
                       variant="contained"
                       color="primary"
                       sx={{
-                        mt: 2,
+                        mt: 1,
                         borderRadius: "10px",
                         fontWeight: 600,
                         height: "45px",
@@ -603,6 +646,7 @@ function MemberLoginPage({ history }) {
                     >
                       Continue
                     </LoadingButton>
+
                     <Divider sx={{ mt: 2 }}>Or</Divider>
                     <FacebookLogin
                       appId="1076770271246017"
@@ -634,7 +678,13 @@ function MemberLoginPage({ history }) {
                   </Box>
                 </Box>
               ) : current === "company" ? (
-                <Box sx={{ mt: 2, height: {xs : "auto",sm :"auto" , md: 650 , lg : 650} }}>
+                <Box
+                  sx={{
+                    mt: 2,
+                    minHeight : 650,
+                    height: { xs: "auto", sm: "auto", md: 650, lg: 650 , xl : 720 },
+                  }}
+                >
                   <Typography
                     sx={{
                       fontSize: "30px",
@@ -670,13 +720,14 @@ function MemberLoginPage({ history }) {
                           <InputAdornment position="start">
                             <PersonIcon
                               sx={{
-                                fontSize: { sm: 20, md: 30 },
+                              fontSize: { sm: 20, md: 30 , lg : 30 , xl : 20 },
                               }}
                             />
                           </InputAdornment>
                         ),
                       }}
                       sx={{
+                        mt: {xs :1 , sm:1 , md:2 , lg:2 , xl:2},
                         "& .MuiOutlinedInput-root": {
                           fontSize: { xs: 15, sm: 15, md: 15, lg: 15, xl: 16 },
                           borderRadius: "10px",
@@ -697,13 +748,14 @@ function MemberLoginPage({ history }) {
                           <InputAdornment position="start">
                             <ApartmentIcon
                               sx={{
-                                fontSize: { sm: 20, md: 30 },
+                              fontSize: { sm: 20, md: 30 , lg : 30 , xl : 20 },
                               }}
                             />
                           </InputAdornment>
                         ),
                       }}
                       sx={{
+                        mt: {xs :1 , sm:1 , md:2 , lg:2 , xl:2},
                         "& .MuiOutlinedInput-root": {
                           fontSize: { xs: 15, sm: 15, md: 15, lg: 15, xl: 16 },
                           borderRadius: "10px",
@@ -724,13 +776,14 @@ function MemberLoginPage({ history }) {
                           <InputAdornment position="start">
                             <MailIcon
                               sx={{
-                                fontSize: { sm: 20, md: 30 },
+                              fontSize: { sm: 20, md: 30 , lg : 30 , xl : 20 },
                               }}
                             />
                           </InputAdornment>
                         ),
                       }}
                       sx={{
+                        mt: {xs :1 , sm:1 , md:2 , lg:2 , xl:2},
                         "& .MuiOutlinedInput-root": {
                           fontSize: { xs: 15, sm: 15, md: 15, lg: 15, xl: 16 },
                           borderRadius: "10px",
@@ -750,13 +803,14 @@ function MemberLoginPage({ history }) {
                           <InputAdornment position="start">
                             <PhoneIcon
                               sx={{
-                                fontSize: { sm: 20, md: 30 },
+                              fontSize: { sm: 20, md: 30 , lg : 30 , xl : 20 },
                               }}
                             />
                           </InputAdornment>
                         ),
                       }}
                       sx={{
+                        mt: {xs :1 , sm:1 , md:2 , lg:2 , xl:2},
                         "& .MuiOutlinedInput-root": {
                           fontSize: { xs: 15, sm: 15, md: 15, lg: 15, xl: 16 },
                           borderRadius: "10px",
@@ -778,13 +832,14 @@ function MemberLoginPage({ history }) {
                           <InputAdornment position="start">
                             <KeyIcon
                               sx={{
-                                fontSize: { sm: 20, md: 30 },
+                              fontSize: { sm: 20, md: 30 , lg : 30 , xl : 20 },
                               }}
                             />
                           </InputAdornment>
                         ),
                       }}
                       sx={{
+                        mt: {xs :1 , sm:1 , md:2 , lg:2 , xl:2},
                         "& .MuiOutlinedInput-root": {
                           fontSize: { xs: 15, sm: 15, md: 15, lg: 15, xl: 16 },
                           borderRadius: "10px", // reduced radius
@@ -792,19 +847,27 @@ function MemberLoginPage({ history }) {
                       }}
                     />
 
-                    <FormControlLabel
-                      control={<Checkbox />}
-                      label="I agree with Terms and Privacy."
-                    />
+                    <Box
+                      sx={{
+                        width: "100%",
+                        display: "flex",
+                        alignItems: "center",
+                        gap: 0,
+                        mt: 1,
+                      }}
+                    >
+                      <FormControlLabel
+                        sx={{
+                          mr: 0,
+                        }}
+                        control={<Checkbox />}
+                      />
+                      <Typography>
+                        I agree with <a href="#">Terms</a> and{" "}
+                        <a href="#">Privacy</a>.
+                      </Typography>
+                    </Box>
 
-                    {/* <TextField
-                   fullWidth
-                   label="Confirm Password"
-                   type="password"
-                   margin="normal"
-                   value={confirmPassword}
-                   onChange={(e) => setConfirmPassword(e.target.value)}
-                 /> */}
                     <LoadingButton
                       fullWidth
                       loading={loading}
@@ -812,7 +875,7 @@ function MemberLoginPage({ history }) {
                       variant="contained"
                       color="primary"
                       sx={{
-                        mt: 2,
+                        mt: 1,
                         borderRadius: "10px",
                         fontWeight: 600,
                         height: "45px",
@@ -821,6 +884,7 @@ function MemberLoginPage({ history }) {
                     >
                       Continue
                     </LoadingButton>
+
                     <Divider sx={{ mt: 2 }}>Or</Divider>
                     <FacebookLogin
                       appId="1076770271246017"
@@ -852,7 +916,7 @@ function MemberLoginPage({ history }) {
                   </Box>
                 </Box>
               ) : (
-                <Box sx={{ mt: 2, minHeight: 650 }}>
+                <Box sx={{ mt: 2,minHeight : 650,     height: { xs: "auto", sm: "auto", md: 650, lg: 650 , xl : 720 }, }}>
                   <Typography
                     sx={{
                       fontSize: "30px",
@@ -888,13 +952,14 @@ function MemberLoginPage({ history }) {
                           <InputAdornment position="start">
                             <PersonIcon
                               sx={{
-                                fontSize: { sm: 20, md: 30 },
+                              fontSize: { sm: 20, md: 30 , lg : 30 , xl : 20 },
                               }}
                             />
                           </InputAdornment>
                         ),
                       }}
                       sx={{
+                        mt: {xs :1 , sm:1 , md:2 , lg:2 , xl:2},
                         "& .MuiOutlinedInput-root": {
                           fontSize: { xs: 15, sm: 15, md: 15, lg: 15, xl: 16 },
                           borderRadius: "10px",
@@ -916,13 +981,14 @@ function MemberLoginPage({ history }) {
                           <InputAdornment position="start">
                             <MailIcon
                               sx={{
-                                fontSize: { sm: 20, md: 30 },
+                              fontSize: { sm: 20, md: 30 , lg : 30 , xl : 20 },
                               }}
                             />
                           </InputAdornment>
                         ),
                       }}
                       sx={{
+                        mt: {xs :1 , sm:1 , md:2 , lg:2 , xl:2},
                         "& .MuiOutlinedInput-root": {
                           fontSize: { xs: 15, sm: 15, md: 15, lg: 15, xl: 16 },
                           borderRadius: "10px",
@@ -942,13 +1008,14 @@ function MemberLoginPage({ history }) {
                           <InputAdornment position="start">
                             <PhoneIcon
                               sx={{
-                                fontSize: { sm: 20, md: 30 },
+                              fontSize: { sm: 20, md: 30 , lg : 30 , xl : 20 },
                               }}
                             />
                           </InputAdornment>
                         ),
                       }}
                       sx={{
+                        mt: {xs :1 , sm:1 , md:2 , lg:2 , xl:2},
                         "& .MuiOutlinedInput-root": {
                           fontSize: { xs: 15, sm: 15, md: 15, lg: 15, xl: 16 },
                           borderRadius: "10px",
@@ -970,13 +1037,14 @@ function MemberLoginPage({ history }) {
                           <InputAdornment position="start">
                             <KeyIcon
                               sx={{
-                                fontSize: { sm: 20, md: 30 },
+                              fontSize: { sm: 20, md: 30 , lg : 30 , xl : 20 },
                               }}
                             />
                           </InputAdornment>
                         ),
                       }}
                       sx={{
+                        mt: {xs :1 , sm:1 , md:2 , lg:2 , xl:2},
                         "& .MuiOutlinedInput-root": {
                           fontSize: { xs: 15, sm: 15, md: 15, lg: 15, xl: 16 },
                           borderRadius: "10px", // reduced radius
@@ -984,19 +1052,27 @@ function MemberLoginPage({ history }) {
                       }}
                     />
 
-                    <FormControlLabel
-                      control={<Checkbox />}
-                      label="I agree with Terms and Privacy."
-                    />
+                    <Box
+                      sx={{
+                        width: "100%",
+                        display: "flex",
+                        alignItems: "center",
+                        gap: 0,
+                        mt: 1,
+                      }}
+                    >
+                      <FormControlLabel
+                        sx={{
+                          mr: 0,
+                        }}
+                        control={<Checkbox />}
+                      />
+                      <Typography>
+                        I agree with <a href="#">Terms</a> and{" "}
+                        <a href="#">Privacy</a>.
+                      </Typography>
+                    </Box>
 
-                    {/* <TextField
-                   fullWidth
-                   label="Confirm Password"
-                   type="password"
-                   margin="normal"
-                   value={confirmPassword}
-                   onChange={(e) => setConfirmPassword(e.target.value)}
-                 /> */}
                     <LoadingButton
                       fullWidth
                       loading={loading}
@@ -1004,7 +1080,7 @@ function MemberLoginPage({ history }) {
                       variant="contained"
                       color="primary"
                       sx={{
-                        mt: 2,
+                        mt: 1,
                         borderRadius: "10px",
                         fontWeight: 600,
                         height: "45px",

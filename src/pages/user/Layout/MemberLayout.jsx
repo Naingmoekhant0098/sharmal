@@ -102,7 +102,7 @@ export default function MemberLayout() {
             "&:hover" : {
               color :"white",
               backgroundColor :"#B075C7",
-              '& .MuiListItemIcon-root': {    // target icon inside ListItem
+              '& .MuiListItemIcon-root': {      
         color: 'white',
       },
             }
@@ -112,7 +112,7 @@ export default function MemberLayout() {
             key={index}
             component={Link}
             to={`${url}${listItem.path}`}
-            onClick={() => setMobileOpen(false)} // Close mobile drawer on navigation
+            onClick={() => setMobileOpen(false)}  
           >
             <ListItemIcon sx={{ minWidth: "10px", pr: 1,color: isActive ? "white" : "grey" , ".list&:hover" : {
               color : 'white'

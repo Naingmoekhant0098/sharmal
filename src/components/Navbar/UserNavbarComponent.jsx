@@ -145,7 +145,7 @@ function UserNavbarComponent({ history, showMenus }) {
         </ListItem>
         {/* add post an ads button */}
         <Divider sx={{ my: 1 }} />
-        <ListItem button onClick={() => history.push("/member/manage")}>
+        <ListItem button onClick={() => history.push("/manage")}>
           <ListItemText primary={t("Ads")} />
         </ListItem>
         <Divider sx={{ my: 1 }} />
@@ -313,13 +313,13 @@ function UserNavbarComponent({ history, showMenus }) {
 
                 {/* Login / Register */}
                 <Typography
-                  onClick={() => history.push("/member/login")}
+                  onClick={() => history.push("/login")}
                   sx={{ cursor: "pointer", color: "#000", fontWeight: 500 }}
                 >
                   {t("login")}
                 </Typography>
                 <Typography
-                  onClick={() => history.push("/member/register")}
+                  onClick={() => history.push("/register")}
                   sx={{ cursor: "pointer", color: "#000", fontWeight: 500 }}
                 >
                   {t("register")}
@@ -330,7 +330,7 @@ function UserNavbarComponent({ history, showMenus }) {
 
                   // <Box sx={{width : 200 ,  height : "auto" , background  : "red"}}>
 
-                  <Box   onClick={() => history.push("/member/manage")} sx={{background : "#6F1D8E",cursor :'pointer' , "&:hover" : {
+                  <Box   onClick={() => history.push("/manage")} sx={{background : "#6F1D8E",cursor :'pointer' , "&:hover" : {
                     background : "rgb(162, 36, 208)"
                   } , padding : "10px 60px" , borderTopLeftRadius : 30}}>
                   ကြော်ငြာတင်ရန်
@@ -351,7 +351,7 @@ function UserNavbarComponent({ history, showMenus }) {
                   //   }}
                   // />
                 ) : (
-                  <Box   onClick={() => history.push("/member/manage")} sx={{background : "#6F1D8E",cursor :'pointer' , "&:hover" : {
+                  <Box   onClick={() => history.push("/manage")} sx={{background : "#6F1D8E",cursor :'pointer' , "&:hover" : {
                     background : "rgb(162, 36, 208)"
                   } , padding : "10px 60px" , borderTopLeftRadius : 30}}>
                  Post An Ads
