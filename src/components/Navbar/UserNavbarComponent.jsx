@@ -114,13 +114,13 @@ function UserNavbarComponent({ history, showMenus }) {
         <Divider sx={{ my: 1 }} />
 
         {/* ✅ Login with icon */}
-        <ListItem button onClick={() => history.push("/member/login")}>
+        <ListItem button onClick={() => history.push("/login")}>
           <LoginIcon sx={{ mr: 1 }} />
           <ListItemText primary={t("Login")} />
         </ListItem>
 
         {/* ✅ Register with icon */}
-        <ListItem button onClick={() => history.push("/member/register")}>
+        <ListItem button onClick={() => history.push("/register")}>
           <AppRegistrationIcon sx={{ mr: 1 }} />
           <ListItemText primary={t("Register")} />
         </ListItem>
